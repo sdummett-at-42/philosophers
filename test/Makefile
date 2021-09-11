@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 18:00:45 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/10 21:11:13 by sdummett         ###   ########.fr        #
+#    Updated: 2021/09/11 15:44:21 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,17 @@ SRC6		= pass_args_to_threads.c
 OBJ6		= $(SRC6:.c=.o)
 TEST6		= pass_args_to_threads
 
-SRC6		= sum_array_num.c
-OBJ6		= $(SRC6:.c=.o)
-TEST6		= sum_array_num
+SRC7		= sum_array_num.c
+OBJ7		= $(SRC7:.c=.o)
+TEST7		= sum_array_num
+
+SRC8		= trylock_and_lock.c
+OBJ8		= $(SRC8:.c=.o)
+TEST8		= trylock_and_lock
+
+SRC9		= condition_variables.c
+OBJ9		= $(SRC9:.c=.o)
+TEST9		= condition_variables
 
 RM			= rm -f
 CC			= clang
@@ -70,6 +78,12 @@ $(TEST6): $(OBJ6)
 $(TEST7): $(OBJ7)
 	$(CC) $(CFLAGS) $(OBJ7) -o $(TEST7)
 
+$(TEST8): $(OBJ8)
+	$(CC) $(CFLAGS) $(OBJ8) -o $(TEST8)
+
+$(TEST9): $(OBJ9)
+	$(CC) $(CFLAGS) $(OBJ9) -o $(TEST9)
+
 clean:
 	$(RM) $(OBJ1)
 	$(RM) $(OBJ2)
@@ -78,6 +92,8 @@ clean:
 	$(RM) $(OBJ5)
 	$(RM) $(OBJ6)
 	$(RM) $(OBJ7)
+	$(RM) $(OBJ8)
+	$(RM) $(OBJ9)
 	@printf "$(WHT)[$(YEL)$(TEST) OBJS REMOVED$(WHT)]\n"
 	
 fclean: clean
@@ -88,6 +104,8 @@ fclean: clean
 	$(RM) $(TEST5)
 	$(RM) $(TEST6)
 	$(RM) $(TEST7)
+	$(RM) $(TEST8)
+	$(RM) $(TEST9)
 	@printf "$(WHT)[$(YEL)$(TEST) BINARIES REMOVED$(WHT)]\n"
 
 re: fclean all	
