@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 18:00:45 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/12 16:17:06 by sdummett         ###   ########.fr        #
+#    Updated: 2021/09/14 18:08:33 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,18 @@ SRC12		= pthread_barrier.c
 OBJ12		= $(SRC12:.c=.o)
 TEST12		= pthread_barrier
 
+SRC13		= pthread_barrier_example.c
+OBJ13		= $(SRC13:.c=.o)
+TEST13		= pthread_barrier_example
+
+SRC14		= semaphores_intro.c
+OBJ14		= $(SRC14:.c=.o)
+TEST14		= semaphores_intro
+
+SRC15		= semaphores_example.c
+OBJ15		= $(SRC15:.c=.o)
+TEST15		= semaphores_example
+
 RM			= rm -f
 CC			= clang
 INC			= -Iinclude
@@ -105,6 +117,15 @@ $(TEST11): $(OBJ11)
 $(TEST12): $(OBJ12)
 	$(CC) $(CFLAGS) $(OBJ12) -o $(TEST12)
 
+$(TEST13): $(OBJ13)
+	$(CC) $(CFLAGS) $(OBJ13) -o $(TEST13)
+
+$(TEST14): $(OBJ14)
+	$(CC) $(CFLAGS) $(OBJ14) -o $(TEST14)
+
+$(TEST15): $(OBJ15)
+	$(CC) $(CFLAGS) $(OBJ15) -o $(TEST15)
+
 clean:
 	$(RM) $(OBJ1)
 	$(RM) $(OBJ2)
@@ -118,6 +139,9 @@ clean:
 	$(RM) $(OBJ10)
 	$(RM) $(OBJ11)
 	$(RM) $(OBJ12)
+	$(RM) $(OBJ13)
+	$(RM) $(OBJ14)
+	$(RM) $(OBJ15)
 	@printf "$(WHT)[$(YEL)$(TEST) OBJS REMOVED $(WHT)]\n"
 	
 fclean: clean
@@ -133,6 +157,9 @@ fclean: clean
 	$(RM) $(TEST10)
 	$(RM) $(TEST11)
 	$(RM) $(TEST12)
+	$(RM) $(TEST13)
+	$(RM) $(TEST14)
+	$(RM) $(TEST15)
 	@printf "$(WHT)[$(YEL)$(TEST) BINARIES REMOVED $(WHT)]\n"
 
 re: fclean all	
