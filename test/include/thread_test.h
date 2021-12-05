@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:58:38 by sdummett          #+#    #+#             */
-/*   Updated: 2021/09/11 15:38:28 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/09/14 17:42:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # include <pthread.h>
 # include <time.h>
 # include <errno.h>
+# include <semaphore.h>
 
 #endif

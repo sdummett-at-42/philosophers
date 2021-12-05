@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 18:00:45 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/11 15:44:21 by sdummett         ###   ########.fr        #
+#    Updated: 2021/09/14 18:08:33 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ TEST3		= mutex
 
 SRC4		= create_threads_in_loop.c
 OBJ4		= $(SRC4:.c=.o)
-TEST4		= create_thread_in_loop
+TEST4		= create_threads_in_loop
 
 SRC5		= thread_return_value.c
 OBJ5		= $(SRC5:.c=.o)
@@ -45,6 +45,30 @@ TEST8		= trylock_and_lock
 SRC9		= condition_variables.c
 OBJ9		= $(SRC9:.c=.o)
 TEST9		= condition_variables
+
+SRC10		= condition_variables_signal_vs_broadcast.c
+OBJ10		= $(SRC10:.c=.o)
+TEST10		= condition_variables_signal_vs_broadcast
+
+SRC11		= mutex_trylock_example.c
+OBJ11		= $(SRC11:.c=.o)
+TEST11		= mutex_trylock_example
+
+SRC12		= pthread_barrier.c
+OBJ12		= $(SRC12:.c=.o)
+TEST12		= pthread_barrier
+
+SRC13		= pthread_barrier_example.c
+OBJ13		= $(SRC13:.c=.o)
+TEST13		= pthread_barrier_example
+
+SRC14		= semaphores_intro.c
+OBJ14		= $(SRC14:.c=.o)
+TEST14		= semaphores_intro
+
+SRC15		= semaphores_example.c
+OBJ15		= $(SRC15:.c=.o)
+TEST15		= semaphores_example
 
 RM			= rm -f
 CC			= clang
@@ -84,6 +108,24 @@ $(TEST8): $(OBJ8)
 $(TEST9): $(OBJ9)
 	$(CC) $(CFLAGS) $(OBJ9) -o $(TEST9)
 
+$(TEST10): $(OBJ10)
+	$(CC) $(CFLAGS) $(OBJ10) -o $(TEST10)
+
+$(TEST11): $(OBJ11)
+	$(CC) $(CFLAGS) $(OBJ11) -o $(TEST11)
+
+$(TEST12): $(OBJ12)
+	$(CC) $(CFLAGS) $(OBJ12) -o $(TEST12)
+
+$(TEST13): $(OBJ13)
+	$(CC) $(CFLAGS) $(OBJ13) -o $(TEST13)
+
+$(TEST14): $(OBJ14)
+	$(CC) $(CFLAGS) $(OBJ14) -o $(TEST14)
+
+$(TEST15): $(OBJ15)
+	$(CC) $(CFLAGS) $(OBJ15) -o $(TEST15)
+
 clean:
 	$(RM) $(OBJ1)
 	$(RM) $(OBJ2)
@@ -94,7 +136,13 @@ clean:
 	$(RM) $(OBJ7)
 	$(RM) $(OBJ8)
 	$(RM) $(OBJ9)
-	@printf "$(WHT)[$(YEL)$(TEST) OBJS REMOVED$(WHT)]\n"
+	$(RM) $(OBJ10)
+	$(RM) $(OBJ11)
+	$(RM) $(OBJ12)
+	$(RM) $(OBJ13)
+	$(RM) $(OBJ14)
+	$(RM) $(OBJ15)
+	@printf "$(WHT)[$(YEL)$(TEST) OBJS REMOVED $(WHT)]\n"
 	
 fclean: clean
 	$(RM) $(TEST1)
@@ -106,6 +154,12 @@ fclean: clean
 	$(RM) $(TEST7)
 	$(RM) $(TEST8)
 	$(RM) $(TEST9)
-	@printf "$(WHT)[$(YEL)$(TEST) BINARIES REMOVED$(WHT)]\n"
+	$(RM) $(TEST10)
+	$(RM) $(TEST11)
+	$(RM) $(TEST12)
+	$(RM) $(TEST13)
+	$(RM) $(TEST14)
+	$(RM) $(TEST15)
+	@printf "$(WHT)[$(YEL)$(TEST) BINARIES REMOVED $(WHT)]\n"
 
 re: fclean all	
