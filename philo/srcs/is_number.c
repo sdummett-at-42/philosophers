@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   is_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 20:50:08 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 20:43:36 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/14 20:46:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#include "philosophers.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include <stdbool.h>
+bool	is_number(char *arg)
+{
+	int	i;
 
-void	ft_strerror(char *str);
-int		ft_strlen(char *str);
-bool	is_number(char *arg);
-int		check_args(char **args);
-
-#endif
+	i = 0;
+	while (arg[i] == ' ' || (arg[i] >= 9 && arg[i] <= 13))
+		i++;
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
+	while (arg[i] != '\0')
+	{
+		if (!(arg[i] >= '0' && arg[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
+}

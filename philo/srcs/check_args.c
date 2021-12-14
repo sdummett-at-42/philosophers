@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/13 13:17:00 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 20:48:36 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/14 20:49:44 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main(int ac, char **av)
+int	check_args(char **args)
 {
-	(void)av;
-	if (ac < 5 || ac > 6)
+	int	i;
+
+	i = 0;
+	while (args[i] != NULL)
 	{
-		ft_strerror("Error: arguments\n");
-		return (1);
+		if (!is_number(args[i]))
+			return (0);
+		i++;
 	}
-	return (0);
+	return (1);
 }

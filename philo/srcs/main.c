@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 20:50:08 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/14 20:53:48 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#include "philosophers.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include <stdbool.h>
-
-void	ft_strerror(char *str);
-int		ft_strlen(char *str);
-bool	is_number(char *arg);
-int		check_args(char **args);
-
-#endif
+int main(int ac, char **av)
+{
+	(void)av;
+	if (ac < 5 || ac > 6)
+	{
+		ft_strerror("Error: Not enough or too much arguments\n");
+		return (1);
+	}
+	if (!check_args(av + 1))
+	{
+		printf("ret => %d\n", ret);
+		ft_strerror("Error: Bad arguments\n");
+		return (2);
+	}
+	return (0);
+}
