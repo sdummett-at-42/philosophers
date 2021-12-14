@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_simulation.c                                 :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 22:09:16 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/14 22:13:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	start_simulation(t_philo *philo, char **args)
+void	*routine(void *arg)
 {
-	get_simulation_data(philo, args);
-	print_struct(philo);
-	init_fork_mutexes(philo);
-	launch_threads(philo);
-	wait_threads_end(philo);
-	destroy_fork_mutexes(philo);
+	(void)arg;
+	printf("Hello from routine\n");
+	return (NULL);
 }

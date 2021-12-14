@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_simulation.c                                 :+:      :+:    :+:   */
+/*   wait_threads_end.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 22:09:16 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 21:58:41 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/14 22:17:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	start_simulation(t_philo *philo, char **args)
+void	wait_threads_end(t_philo *philo)
 {
-	get_simulation_data(philo, args);
-	print_struct(philo);
-	init_fork_mutexes(philo);
-	launch_threads(philo);
-	wait_threads_end(philo);
-	destroy_fork_mutexes(philo);
+	int	i;
+
+	i = 0;
+	while (i < philo->philo_number)
+	{
+		pthread_join(*(philo->philo[i]), NULL);
+		i++;
+	}
 }
