@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/14 20:49:57 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/14 21:41:26 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ INCLUDES	= $(wildcard include/*.h)
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	= main.c ft_strlen.c ft_strerror.c is_number.c check_args.c
+SRCS_FILES	= main.c ft_strlen.c ft_strerror.c is_number.c check_args.c ft_atoi.c \
+				get_simulation_data.c debug.c start_simulation.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
