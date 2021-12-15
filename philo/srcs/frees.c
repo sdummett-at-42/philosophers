@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:40:09 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 09:48:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 09:50:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void	frees(t_philo *philo)
 {
 	free_threads(philo);
 	free_mutexes(philo);
-	//free(philo);
 }

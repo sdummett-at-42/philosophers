@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_simulation.c                                 :+:      :+:    :+:   */
+/*   init_forks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 10:39:51 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/15 10:39:57 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/15 10:42:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	start_simulation(t_philo *philo, char **args)
+void	init_forks(t_philo *philo)
 {
-	get_simulation_data(philo, args);
-	print_struct(philo);
-	init_fork_mutexes(philo);
-	init_forks(philo);
-	launch_threads(philo);
-	wait_threads_end(philo);
-	destroy_fork_mutexes(philo);
-	frees(philo);
+	int	i;
+
+	philo->forks = malloc(sizeof(int *) * philo->philo_number);
+	i = 0;
+	while (i < philo->philo_number)
+	{
+		philo->forks[i] = malloc(sizeof(int));
+		i++;
+	}
 }
