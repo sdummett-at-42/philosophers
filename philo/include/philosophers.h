@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 14:18:54 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:11:43 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	destroy_mutexes(t_datas *philo);
 void	frees(t_datas *philo);
 void	init_forks(t_datas *philo);
 void	*reaper_routine(void *arg);
+void	*eat_routine(void *arg);
 
 /*
 ** Debug

@@ -13,3 +13,4 @@
 philo/philo
 *.o
 .vscode
+philo/vgcore*
