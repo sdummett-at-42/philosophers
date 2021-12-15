@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 15:11:43 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:02:40 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ typedef struct s_datas
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
+	bool			all_philo_is_alived;
+	pthread_mutex_t	all_philo_is_alived_mutex;
 	int				**forks;
 	pthread_t		**philo;
 	pthread_mutex_t	**fork_mutex;
-	pthread_mutex_t	*speak_mutex;
+	pthread_mutex_t	speak_mutex;
 }	t_datas;
 
 typedef struct s_philo

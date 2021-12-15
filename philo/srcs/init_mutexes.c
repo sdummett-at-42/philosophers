@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:01:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 13:59:44 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:03:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	init_mutexes(t_datas *datas)
 		pthread_mutex_init(datas->fork_mutex[i], NULL);
 		i++;
 	}
-	datas->speak_mutex = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(datas->speak_mutex, NULL);
+	pthread_mutex_init(&datas->speak_mutex, NULL);
+	pthread_mutex_init(&datas->all_philo_is_alived_mutex, NULL);
 }
