@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 10:39:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:13:13 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int main(int ac, char **av)
 {
-	t_philo	philo;
+	t_datas	datas;
 
-	(void)av;
 	if (ac < 5 || ac > 6)
 	{
 		ft_strerror("Error: Not enough or too much arguments\n");
@@ -27,6 +26,6 @@ int main(int ac, char **av)
 		ft_strerror("Error: Bad arguments\n");
 		return (2);
 	}
-	start_simulation(&philo, av + 1);
+	start_simulation(&datas, av + 1);
 	return (0);
 }

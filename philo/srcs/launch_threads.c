@@ -6,22 +6,26 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:56:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 09:39:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:23:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	launch_threads(t_philo *philo)
+void	launch_threads(t_datas *datas)
 {
 	int	i;
+	t_philo	*philo;
 
-	philo->philo = malloc(sizeof(pthread_t *) * philo->philo_number);
+	datas->philo = malloc(sizeof(pthread_t *) * datas->philo_number);
 	i = 0;
-	while (i < philo->philo_number)
+	while (i < datas->philo_number)
 	{
-		philo->philo[i] = malloc(sizeof(pthread_t));
-		pthread_create(philo->philo[i], NULL, &routine, NULL);
+		datas->philo[i] = malloc(sizeof(pthread_t));
+		philo = malloc(sizeof(t_philo));
+		philo->id = i;
+		philo->datas = datas;
+		pthread_create(datas->philo[i], NULL, &routine, philo);
 		i++;
 	}
 }

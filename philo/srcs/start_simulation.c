@@ -6,20 +6,21 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 10:39:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:08:44 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	start_simulation(t_philo *philo, char **args)
+void	start_simulation(t_datas *datas, char **args)
 {
-	get_simulation_data(philo, args);
-	print_struct(philo);
-	init_fork_mutexes(philo);
-	init_forks(philo);
-	launch_threads(philo);
-	wait_threads_end(philo);
-	destroy_fork_mutexes(philo);
-	frees(philo);
+	
+	get_simulation_data(datas, args);
+	//print_struct(datas);
+	init_fork_mutexes(datas);
+	init_forks(datas);
+	launch_threads(datas);
+	wait_threads_end(datas);
+	destroy_fork_mutexes(datas);
+	frees(datas);
 }
