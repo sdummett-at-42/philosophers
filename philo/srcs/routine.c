@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 16:17:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:07:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	*routine(void *arg)
 	philo = arg;
 	// (void)reaper_thread;
 	pthread_mutex_lock(&philo->datas->speak_mutex);
-	printf("Hello from routine, I'm thread number %d\n", philo->id);
+	pthread_mutex_lock(&philo->datas->all_philo_is_alived_mutex);
+	if (philo->datas->all_philo_is_alived)
+		printf("Hello from routine, I'm thread number %d\n", philo->id);
 	pthread_mutex_unlock(&philo->datas->speak_mutex);
+	pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
+	
 	// print_struct(philo->datas);
 	while (philo->datas->all_philo_is_alived)
 	{
