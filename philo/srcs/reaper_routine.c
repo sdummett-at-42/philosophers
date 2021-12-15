@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 16:21:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:32:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*reaper_routine(void *arg)
 	pthread_mutex_lock(&philo->has_eat_mutex);
 	if (philo->has_eat == EAT)
 	{
+		philo->has_eat = NOT_EAT;
 		pthread_mutex_unlock(&philo->has_eat_mutex);
 		pthread_mutex_lock(&philo->datas->speak_mutex);
 		printf("REAPER: philo %d has eat :)\n", philo->id);
