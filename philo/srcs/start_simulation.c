@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 22:09:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 09:46:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	start_simulation(t_philo *philo, char **args)
 	launch_threads(philo);
 	wait_threads_end(philo);
 	destroy_fork_mutexes(philo);
+	frees(philo);
 }
