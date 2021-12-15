@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/15 15:11:54 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/15 16:28:29 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ OBJS_FILES	= $(SRCS_FILES:.c=.o)
 OBJS			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
 
 RMRF		= rm -rf
-
 
 all: $(NAME)
 
