@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:40:09 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 13:28:03 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:59:54 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	free_forks(t_datas *datas)
 		i++;
 	}
 	free(datas->forks);
+	free(datas->speak_mutex);
 }
 
 void	frees(t_datas *datas)

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 13:29:39 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:52:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*routine(void *arg)
 
 	philo = arg;
 //	print_struct(philo);
+	pthread_mutex_lock(philo->datas->speak_mutex);
 	printf("Hello from routine, I'm thread number %d\n", philo->id);
+	pthread_mutex_unlock(philo->datas->speak_mutex);
 	return (arg);
 }
