@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/16 09:54:11 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/16 10:22:20 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->datas->all_philo_is_alived_mutex);
 	while (philo->datas->all_philo_is_alived)
 	{
-		//usleep(philo->datas->time_to_sleep);
+		usleep(philo->datas->time_to_sleep);
 		pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
 		pthread_create(&reaper_thread, NULL, &reaper_routine, philo);
 		pthread_create(&eat_thread, NULL, &eat_routine, philo);

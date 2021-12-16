@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 15:08:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/16 09:52:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/16 10:21:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	*eat_routine(void *arg)
 		/*
 		** Lock les fork mutexes -> usleep -> unlock les fork mutexes
 		*/
-		// pthread_mutex_lock(philo->datas->fork_mutex[philo->left_fork]);
-		// pthread_mutex_lock(philo->datas->fork_mutex[philo->right_fork]);
+		pthread_mutex_lock(philo->datas->fork_mutex[philo->left_fork]);
+		pthread_mutex_lock(philo->datas->fork_mutex[philo->right_fork]);
 		usleep(philo->datas->time_to_eat);
-		// pthread_mutex_lock(philo->datas->fork_mutex[philo->left_fork]);
-		// pthread_mutex_lock(philo->datas->fork_mutex[philo->right_fork]);
+		pthread_mutex_unlock(philo->datas->fork_mutex[philo->left_fork]);
+		pthread_mutex_unlock(philo->datas->fork_mutex[philo->right_fork]);
 	}
 	else
 		pthread_mutex_unlock(&philo->has_eat_mutex);
