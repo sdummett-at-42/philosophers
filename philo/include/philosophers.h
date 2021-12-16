@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 16:02:40 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/16 08:55:07 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	frees(t_datas *philo);
 void	init_forks(t_datas *philo);
 void	*reaper_routine(void *arg);
 void	*eat_routine(void *arg);
-
+void	unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
+void	lock_speak_and_philo_is_alived(t_philo *philo);
 /*
 ** Debug
 */

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 15:08:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 17:24:01 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/16 08:57:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@ void	*eat_routine(void *arg)
 	if (philo->has_eat != DEAD)
 	{
 		philo->has_eat = EAT;
-		pthread_mutex_lock(&philo->datas->speak_mutex);
-		pthread_mutex_lock(&philo->datas->all_philo_is_alived_mutex);
+		lock_speak_and_philo_is_alived(philo);
 		if (philo->datas->all_philo_is_alived)
 			printf("EAT_ROUTINE : philo %d is eating\n", philo->id);
-		pthread_mutex_unlock(&philo->has_eat_mutex);
-		pthread_mutex_unlock(&philo->datas->speak_mutex);
-		pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
-		
+		unlock_has_eat_and_speak_and_philo_is_alived(philo);
 		/*
 		** Lock les fork mutexes -> usleep -> unlock les fork mutexes
 		*/
