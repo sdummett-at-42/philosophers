@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/16 08:55:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/16 10:13:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_datas
 typedef struct s_philo
 {
 	int				id;
+	int				left_fork;
+	int				right_fork;
 	int				has_eat;
 	pthread_mutex_t	has_eat_mutex;
 	t_datas			*datas;
@@ -54,15 +56,16 @@ bool	is_number(char *arg);
 int		ft_atoi(const char *str);
 void	ft_putstr(char *str);
 int		check_args(char **args);
-void	start_simulation(t_datas *philo, char **args);
-void	get_simulation_data(t_datas *philo, char **args);
+void	start_simulation(t_datas *datas, char **args);
+void	get_simulation_data(t_datas *datas, char **args);
 void	*routine(void *arg);
-void	init_mutexes(t_datas *philo);
-void	launch_threads(t_datas *philo);
-void	wait_threads_end(t_datas *philo);
-void	destroy_mutexes(t_datas *philo);
-void	frees(t_datas *philo);
-void	init_forks(t_datas *philo);
+void	init_mutexes(t_datas *datas);
+t_philo	**init_philos(t_datas *datas);
+void	launch_threads(t_datas *datas, t_philo **philo);
+void	wait_threads_end(t_datas *datas);
+void	destroy_mutexes(t_datas *datas);
+void	frees(t_datas *datas);
+void	init_forks(t_datas *datas);
 void	*reaper_routine(void *arg);
 void	*eat_routine(void *arg);
 void	unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
