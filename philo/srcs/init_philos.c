@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 20:50:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/21 00:17:37 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static void	place_forks(t_philo *philo)
 		philo->left_fork = philo->right_fork;
 		philo->right_fork = tmp;
 	}
-	printf("Philo %d: left_fork => %d | right_fork => %d\n",
-		philo->id, philo->left_fork, philo->right_fork);
 }
 
 t_philo	**init_philos(t_datas *datas)

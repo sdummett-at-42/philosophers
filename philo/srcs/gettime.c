@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch_threads.c                                   :+:      :+:    :+:   */
+/*   gettime.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:56:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 23:45:30 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/20 23:45:34 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/21 00:08:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	launch_threads(t_datas *datas, t_philo **philo)
+unsigned long int	gettime(void)
 {
-	int		i;
+	struct timeval	time;
 
-	i = 0;
-	datas->simulation_start_ms = gettime();
-	while (i < datas->philo_number)
-	{
-		pthread_create(datas->philo[i], NULL, &routine, philo[i]);
-		i++;
-	}
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
