@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 18:50:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:22:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@ static void	place_forks(t_philo *philo)
 		philo->right_fork = philo->datas->philo_number - 1;
 	else
 		philo->right_fork = philo->id - 1;
-	if (philo->id == philo->datas->philo_number - 1)
-		philo->left_fork = philo->datas->philo_number - philo->datas->philo_number;
-	else
-		philo->left_fork = philo->id ;
+	philo->left_fork = philo->id ;
 	if (philo->left_fork > philo->right_fork)
 	{
 		tmp = philo->left_fork;
 		philo->left_fork = philo->right_fork;
 		philo->right_fork = tmp;
 	}
+	printf("Philo %d: left_fork => %d | right_fork => %d\n",
+		philo->id, philo->left_fork, philo->right_fork);
 }
 
 t_philo	**init_philos(t_datas *datas)
