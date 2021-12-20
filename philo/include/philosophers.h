@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 18:49:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:51:00 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_philo
 	int				id;
 	int				left_fork;
 	int				right_fork;
+	pthread_mutex_t	*left_mutex;
+	pthread_mutex_t	*right_mutex;
 	struct timeval	end;
 	struct timeval	start;
 	t_datas			*datas;

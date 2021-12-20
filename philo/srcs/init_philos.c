@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 20:22:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:50:41 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_philo	**init_philos(t_datas *datas)
 		philo[i]->id = i;
 		philo[i]->datas = datas;
 		place_forks(philo[i]);
+		philo[i]->left_mutex = philo[i]->datas->fork_mutex[philo[i]->left_fork];
+		philo[i]->right_mutex = philo[i]->datas->fork_mutex[philo[i]->right_fork];
 		i++;
 	}
 	return (philo);
