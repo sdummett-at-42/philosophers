@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 18:38:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 18:49:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ typedef struct s_philo
 	struct timeval	end;
 	struct timeval	start;
 	t_datas			*datas;
-	// int				has_eat;
-	// pthread_mutex_t	has_eat_mutex;
 } t_philo;
 
 void	ft_strerror(char *str);

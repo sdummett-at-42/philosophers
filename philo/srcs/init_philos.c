@@ -6,16 +6,35 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 18:43:01 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 18:50:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+static void	place_forks(t_philo *philo)
+{
+	int	tmp;
+
+	if (philo->id == 0)
+		philo->right_fork = philo->datas->philo_number - 1;
+	else
+		philo->right_fork = philo->id - 1;
+	if (philo->id == philo->datas->philo_number - 1)
+		philo->left_fork = philo->datas->philo_number - philo->datas->philo_number;
+	else
+		philo->left_fork = philo->id ;
+	if (philo->left_fork > philo->right_fork)
+	{
+		tmp = philo->left_fork;
+		philo->left_fork = philo->right_fork;
+		philo->right_fork = tmp;
+	}
+}
+
 t_philo	**init_philos(t_datas *datas)
 {
 	int		i;
-	int		tmp;
 	t_philo	**philo;
 
 	philo = malloc(sizeof(t_philo *) * datas->philo_number);
@@ -26,23 +45,8 @@ t_philo	**init_philos(t_datas *datas)
 		datas->philo[i] = malloc(sizeof(pthread_t));
 		philo[i] = malloc(sizeof(t_philo));
 		philo[i]->id = i;
-		// philo[i]->has_eat = NOT_EAT;
 		philo[i]->datas = datas;
-		if (philo[i]->id == 0)
-			philo[i]->right_fork = philo[i]->datas->philo_number - 1;
-		else
-			philo[i]->right_fork = philo[i]->id - 1;
-		if (philo[i]->id == philo[i]->datas->philo_number - 1)
-			philo[i]->left_fork = philo[i]->datas->philo_number - philo[i]->datas->philo_number;
-		else
-			philo[i]->left_fork = philo[i]->id ;
-		if (philo[i]->left_fork > philo[i]->right_fork)
-		{
-			tmp = philo[i]->left_fork;
-			philo[i]->left_fork = philo[i]->right_fork;
-			philo[i]->right_fork = tmp;
-		}
-		// pthread_mutex_init(&philo[i]->has_eat_mutex, NULL);
+		place_forks(philo[i]);
 		i++;
 	}
 	return (philo);

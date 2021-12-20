@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/20 18:43:54 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/20 18:47:32 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	*routine(void *arg)
 {
 	t_philo		*philo;
-	// pthread_t	reaper_thread;
-	// pthread_t	eat_thread;
 
 	philo = arg;
 	lock_speak_and_philo_is_alived(philo);
@@ -28,12 +26,8 @@ void	*routine(void *arg)
 	while (philo->datas->all_philo_is_alived)
 	{
 		usleep(philo->datas->time_to_sleep);
-		pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
-		// pthread_create(&reaper_thread, NULL, &reaper_routine, philo);
-		// pthread_create(&eat_thread, NULL, &eat_routine, philo);
-		// pthread_join(reaper_thread, NULL);
-		// pthread_join(eat_thread, NULL);
-		pthread_mutex_lock(&philo->datas->all_philo_is_alived_mutex);
+		// pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
+		// pthread_mutex_lock(&philo->datas->all_philo_is_alived_mutex);
 		break ;
 	}
 	pthread_mutex_unlock(&philo->datas->all_philo_is_alived_mutex);
