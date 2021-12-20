@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/16 09:48:37 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/20 18:41:13 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ OBJS_DIR	= objs/
 SRCS_FILES	= main.c ft_strlen.c ft_strerror.c is_number.c check_args.c ft_atoi.c \
 				get_simulation_data.c debug.c start_simulation.c routine.c \
 				init_mutexes.c wait_threads_end.c destroy_mutexes.c \
-				launch_threads.c init_forks.c frees.c ft_putstr.c reaper_routine.c \
-				eat_routine.c unlock_has_eat_and_speak_and_philo_is_alived.c \
+				launch_threads.c init_forks.c frees.c ft_putstr.c \
 				lock_speak_and_philo_is_alived.c init_philos.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 

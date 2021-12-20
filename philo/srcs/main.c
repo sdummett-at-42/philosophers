@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	if (!check_args(av + 1))
 	{
 		ft_strerror("Error: Bad arguments\n");
-		return (2);
+		return (2);;
 	}
 	start_simulation(&datas, av + 1);
 	return (0);
