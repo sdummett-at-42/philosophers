@@ -6,27 +6,31 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 00:17:37 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:59:41 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	place_forks(t_philo *philo)
+static void	place_forks(t_philo *philo, t_datas *datas)
 {
 	int	tmp;
+	int	right_fork;
+	int	left_fork;
 
 	if (philo->id == 0)
-		philo->right_fork = philo->datas->philo_number - 1;
+		right_fork = philo->datas->philo_number - 1;
 	else
-		philo->right_fork = philo->id - 1;
-	philo->left_fork = philo->id ;
-	if (philo->left_fork > philo->right_fork)
+		right_fork = philo->id - 1;
+	left_fork = philo->id ;
+	if (left_fork > right_fork)
 	{
-		tmp = philo->left_fork;
-		philo->left_fork = philo->right_fork;
-		philo->right_fork = tmp;
+		tmp = left_fork;
+		left_fork = right_fork;
+		right_fork = tmp;
 	}
+	philo->left_mutex = datas->fork_mutex[left_fork];
+	philo->right_mutex = datas->fork_mutex[right_fork];
 }
 
 t_philo	**init_philos(t_datas *datas)
@@ -43,9 +47,7 @@ t_philo	**init_philos(t_datas *datas)
 		philo[i] = malloc(sizeof(t_philo));
 		philo[i]->id = i;
 		philo[i]->datas = datas;
-		place_forks(philo[i]);
-		philo[i]->left_mutex = philo[i]->datas->fork_mutex[philo[i]->left_fork];
-		philo[i]->right_mutex = philo[i]->datas->fork_mutex[philo[i]->right_fork];
+		place_forks(philo[i], datas);
 		i++;
 	}
 	return (philo);

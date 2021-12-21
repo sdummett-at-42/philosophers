@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:09:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 16:29:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:57:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	destroy_mutexes(t_datas *datas)
 		pthread_mutex_destroy(datas->fork_mutex[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&datas->all_philo_is_alived_mutex);
-	pthread_mutex_destroy(&datas->speak_mutex);
+	// pthread_mutex_destroy(&datas->all_philo_is_alived_mutex);
+	// pthread_mutex_destroy(&datas->speak_mutex);
 }
