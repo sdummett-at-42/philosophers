@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 13:00:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:34:45 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
 # include <stdbool.h>
 # include "colorcodes.h"
 
-# define DEAD -1
-# define NOT_EAT 0
-# define EAT 1
+# define THINKING 0
+# define FORK_TAKEN 1
+# define EATING 2
+# define SLEEPING 3
+# define DIED 4
 
 typedef struct s_datas
 {
@@ -33,12 +35,10 @@ typedef struct s_datas
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	// bool			all_philo_is_alived;
-	// pthread_mutex_t	all_philo_is_alived_mutex;
-	// int				**forks;
+	bool			someone_died;
+	pthread_mutex_t	someone_died_mutex;
 	pthread_t		**philo;
 	pthread_mutex_t	**fork_mutex;
-	// pthread_mutex_t	speak_mutex;
 	unsigned long int		simulation_start_ms;
 }	t_datas;
 
@@ -69,6 +69,7 @@ void		*reaper_routine(void *arg);
 void		*eat_routine(void *arg);
 void		unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 unsigned long int	gettime(void);
+int			 print_msg(t_philo *philo, int state);
 
 /*
 ** Debug

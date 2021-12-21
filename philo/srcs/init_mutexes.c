@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:01:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 12:56:58 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:07:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_mutexes(t_datas *datas)
 		pthread_mutex_init(datas->fork_mutex[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&datas->someone_died_mutex, NULL);
+	
 	// pthread_mutex_init(&datas->speak_mutex, NULL);
 	// pthread_mutex_init(&datas->all_philo_is_alived_mutex, NULL);
 }
