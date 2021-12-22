@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 16:34:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:56:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define FORK_TAKEN 1
 # define EATING 2
 # define SLEEPING 3
-# define DIED 4
 
 typedef struct s_datas
 {
@@ -69,7 +68,8 @@ void		*reaper_routine(void *arg);
 void		*eat_routine(void *arg);
 void		unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 unsigned long int	gettime(void);
-int			 print_msg(t_philo *philo, int state);
+int			print_msg(t_philo *philo, int state);
+void		drop_forks(t_philo *philo);
 
 /*
 ** Debug
