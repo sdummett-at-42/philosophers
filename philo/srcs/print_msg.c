@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 16:47:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:31:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int print_msg(t_philo *philo, int state)
 		pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		return (-1);
 	}
-	
 	if (state == THINKING)
 		printf( WHT "%-6ld %-2d is thinking\n" RESET , current_time, philo->id);
 	if (state == FORK_TAKEN)
