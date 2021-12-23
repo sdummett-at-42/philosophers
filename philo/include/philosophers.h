@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 13:35:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:34:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 {
 	int				id;
 	unsigned long	last_meal;
+	unsigned long	simulation_start;
 	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	*left_mutex;
 	pthread_mutex_t	*right_mutex;
@@ -73,6 +74,7 @@ unsigned long int	gettime(void);
 int			print_msg(t_philo *philo, int state);
 void		drop_forks(t_philo *philo);
 void		*monitor_routine(void *arg);
+void   		ft_usleep(unsigned long time_to_sleep);
 
 /*
 ** Debug

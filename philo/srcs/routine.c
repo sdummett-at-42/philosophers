@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 15:34:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:45:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*routine(void *arg)
 	philo = arg;
 	
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
-	while (gettime() < philo->datas->simulation_start_ms);
+	//while (gettime() < philo->datas->simulation_start_ms);
 	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
@@ -47,29 +47,15 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_lock(&philo->last_meal_mutex);
 		philo->last_meal = gettime();
-		// usleep(philo->datas->time_to_eat * 1000);
-		my_usleep(philo->datas->time_to_eat);
+		ft_usleep(philo->datas->time_to_eat);
 		drop_forks(philo);
-
 		pthread_mutex_unlock(&philo->last_meal_mutex);
 		if (print_msg(philo, SLEEPING) < 0)
 			break ;
-		// usleep(philo->datas->time_to_sleep * 1000);
-		my_usleep(philo->datas->time_to_sleep);
+		ft_usleep(philo->datas->time_to_sleep);
 		if (print_msg(philo, THINKING) < 0)
 			break ;
 	}
 	pthread_join(monitor_thread, NULL);
 	return (NULL);
 }
-
-		// if ((gettime() - start) >= (unsigned long int)philo->datas->time_to_die)
-		// {
-		// 	pthread_mutex_lock(&philo->datas->someone_died_mutex);
-		// 	philo->datas->someone_died = true;
-		// 	pthread_mutex_unlock(&philo->datas->someone_died_mutex);
-		// 	current_time = gettime() - philo->datas->simulation_start_ms;
-		// 	printf( BRED "%-6ld %-2d died\n" RESET, current_time, philo->id);
-		// 	drop_forks(philo);
-		// 	break ;
-		// }

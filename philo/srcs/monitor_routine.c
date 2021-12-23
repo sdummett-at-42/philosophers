@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 17:17:38 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:49:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*monitor_routine(void *arg)
 	unsigned long		currtime;
 
 	philo = arg;
-	while (gettime() < philo->datas->simulation_start_ms + 40);
-	usleep(1000);
+	//while (gettime() < philo->datas->simulation_start_ms + 40);
+	ft_usleep(10);
 	while (!philo->datas->someone_died)
 	{
 		pthread_mutex_lock(&philo->last_meal_mutex);
@@ -30,11 +30,10 @@ void	*monitor_routine(void *arg)
 			philo->datas->someone_died = true;
 			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 			printf( BRED "%-6ld %-2d died | diff => %ld | last_meal => %ld\n" RESET,
-				 currtime - philo->datas->simulation_start_ms, philo->id, currtime - philo->last_meal, philo->last_meal - philo->datas->simulation_start_ms); // Take the first gettime();
+				 currtime - philo->simulation_start, philo->id, currtime - philo->last_meal, philo->last_meal - philo->datas->simulation_start_ms); // Take the first gettime();
 		}
 		pthread_mutex_unlock(&philo->last_meal_mutex);
-		my_usleep(10);
-		
+		ft_usleep(20);
 	}
 	return NULL;
 }
