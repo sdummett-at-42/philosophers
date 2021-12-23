@@ -17,7 +17,8 @@ int print_msg(t_philo *philo, int state)
 {
 	unsigned long	current_time;
 
-	current_time = gettime() - philo->datas->simulation_start_ms;
+	// current_time = gettime() - philo->datas->simulation_start_ms;
+	current_time = gettime() - philo->simulation_start;
 	//pthread_mutex_lock(&philo->datas->someone_died_mutex);
 	if (philo->datas->someone_died)
 	{

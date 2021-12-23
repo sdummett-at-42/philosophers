@@ -21,13 +21,13 @@ void	*routine(void *arg)
 	
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
 	while (gettime() < philo->datas->simulation_start_ms);
+	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	while (true)
 	{
-		if (print_msg(philo, THINKING) < 0)
-			break ;
+		
 		pthread_mutex_lock(philo->left_mutex);
 		if (print_msg(philo, FORK_TAKEN) < 0)
 		{
@@ -47,13 +47,17 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_lock(&philo->last_meal_mutex);
 		philo->last_meal = gettime();
-		usleep(philo->datas->time_to_eat * 1000);
+		// usleep(philo->datas->time_to_eat * 1000);
+		my_usleep(philo->datas->time_to_eat);
 		drop_forks(philo);
 
 		pthread_mutex_unlock(&philo->last_meal_mutex);
 		if (print_msg(philo, SLEEPING) < 0)
 			break ;
-		usleep(philo->datas->time_to_sleep * 1000);
+		// usleep(philo->datas->time_to_sleep * 1000);
+		my_usleep(philo->datas->time_to_sleep);
+		if (print_msg(philo, THINKING) < 0)
+			break ;
 	}
 	pthread_join(monitor_thread, NULL);
 	return (NULL);
