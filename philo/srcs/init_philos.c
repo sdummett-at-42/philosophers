@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 20:56:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:38:40 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	place_forks(t_philo *philo, t_datas *datas)
 	}
 	philo->left_mutex = datas->fork_mutex[left_fork];
 	philo->right_mutex = datas->fork_mutex[right_fork];
-	printf(BMAG "Philo %d: %d <=|=> %d\n" RESET, philo->id, left_fork, right_fork);
+	printf(BMAG "Philo %d: %d <=|=> %d\n" RESET,
+		philo->id, left_fork, right_fork);
 }
 
 t_philo	**init_philos(t_datas *datas)

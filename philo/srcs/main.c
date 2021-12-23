@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/15 13:13:13 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:46:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_datas	datas;
 
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	if (!check_args(av + 1))
 	{
 		ft_strerror("Error: Bad arguments\n");
-		return (2);;
+		return (2);
 	}
 	start_simulation(&datas, av + 1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 13:01:33 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:39:53 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	start_simulation(t_datas *datas, char **args)
 	t_philo	**philo;
 
 	get_simulation_data(datas, args);
-	//print_struct(datas);
 	init_mutexes(datas);
 	philo = init_philos(datas);
 	launch_threads(datas, philo);
