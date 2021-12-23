@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/22 09:55:33 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/23 13:02:52 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS_FILES	= main.c ft_strlen.c ft_strerror.c is_number.c check_args.c ft_atoi.c
 				get_simulation_data.c debug.c start_simulation.c routine.c \
 				init_mutexes.c wait_threads_end.c destroy_mutexes.c \
 				launch_threads.c frees.c ft_putstr.c \
-				init_philos.c gettime.c print_msg.c drop_forks.c
+				init_philos.c gettime.c print_msg.c drop_forks.c monitor_routine.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 
 OBJS_FILES	= $(SRCS_FILES:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/21 12:59:41 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 13:48:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ static void	place_forks(t_philo *philo, t_datas *datas)
 		right_fork = philo->datas->philo_number - 1;
 	else
 		right_fork = philo->id - 1;
-	left_fork = philo->id ;
+	left_fork = philo->id;
 	if (left_fork > right_fork)
+	{
+		tmp = left_fork;
+		left_fork = right_fork;
+		right_fork = tmp;
+	}
+	if (philo->id == 0 && left_fork < right_fork)
 	{
 		tmp = left_fork;
 		left_fork = right_fork;
@@ -31,6 +37,7 @@ static void	place_forks(t_philo *philo, t_datas *datas)
 	}
 	philo->left_mutex = datas->fork_mutex[left_fork];
 	philo->right_mutex = datas->fork_mutex[right_fork];
+	printf(BMAG "Philo %d: %d <=|=> %d\n" RESET, philo->id, left_fork, right_fork);
 }
 
 t_philo	**init_philos(t_datas *datas)

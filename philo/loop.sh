@@ -4,5 +4,5 @@
 # This generates a file every 5 minutes
 
 while true; do
-	./philo 5 4 3 2
+	./philo 4 310 200 100 
 done
