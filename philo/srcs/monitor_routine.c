@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 18:49:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:17:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*monitor_routine(void *arg)
 	unsigned long		currtime;
 
 	philo = arg;
-	//while (gettime() < philo->datas->simulation_start_ms + 40);
 	ft_usleep(10);
 	while (!philo->datas->someone_died)
 	{
@@ -30,10 +29,11 @@ void	*monitor_routine(void *arg)
 			philo->datas->someone_died = true;
 			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 			printf( BRED "%-6ld %-2d died | diff => %ld | last_meal => %ld\n" RESET,
-				 currtime - philo->simulation_start, philo->id, currtime - philo->last_meal, philo->last_meal - philo->datas->simulation_start_ms); // Take the first gettime();
+				 currtime - philo->simulation_start, philo->id, currtime - philo->last_meal,
+					philo->last_meal - philo->simulation_start);
 		}
 		pthread_mutex_unlock(&philo->last_meal_mutex);
-		ft_usleep(20);
+		ft_usleep(10);
 	}
 	return NULL;
 }

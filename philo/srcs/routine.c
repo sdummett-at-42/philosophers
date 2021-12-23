@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 18:45:49 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/23 21:16:48 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,24 @@ void	*routine(void *arg)
 	philo = arg;
 	
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
-	//while (gettime() < philo->datas->simulation_start_ms);
 	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	while (true)
 	{
-		
-		pthread_mutex_lock(philo->left_mutex);
+		if (philo->id % 2 == 0)
+			pthread_mutex_lock(philo->left_mutex);
+		else
+			pthread_mutex_lock(philo->right_mutex);
 		if (print_msg(philo, FORK_TAKEN) < 0)
 		{
-			pthread_mutex_unlock(philo->left_mutex);
+			if (philo->id % 2 == 0)
+				pthread_mutex_unlock(philo->left_mutex);
+			else
+				pthread_mutex_unlock(philo->right_mutex);
 			break ;
 		}
-		pthread_mutex_lock(philo->right_mutex);
 		if (print_msg(philo, FORK_TAKEN) < 0)
 		{
 			drop_forks(philo);
