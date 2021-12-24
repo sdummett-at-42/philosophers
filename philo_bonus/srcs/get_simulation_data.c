@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:33:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 00:13:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,7 @@ void	get_simulation_data(t_datas *datas, char **args)
 	else
 	datas->time_must_eat = -1;
 	datas->someone_died = false;
+	datas->forks = sem_open("forks", O_CREAT, 0600, datas->philo_number);
+	if (datas->forks == SEM_FAILED)
+		printf("main => sem_open failed\n");
 }

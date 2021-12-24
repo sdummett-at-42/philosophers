@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:29:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 22:27:43 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	main(int ac, char **av)
 	}
 	start_simulation(&datas, av + 1);
 	printf(BMAG"Hello world!\n"RESET);
-	sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
+	//sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
 	return (0);
 }

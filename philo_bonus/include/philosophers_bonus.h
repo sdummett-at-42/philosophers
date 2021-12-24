@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 21:03:58 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 23:39:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <semaphore.h>
 # include "colorcodes.h"
+# include <fcntl.h>
 
 # define THINKING 0
 # define FORK_TAKEN 1
@@ -36,10 +39,12 @@ typedef struct s_datas
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
-	pthread_t		**philo;
+	sem_t			*forks;
+	pid_t			**pid;
+	// pthread_t		**philo;
 	// pthread_mutex_t	**fork_mutex;
-	pthread_mutex_t	someone_died_mutex;
-	pthread_mutex_t	someone_speak_mutex;
+	// pthread_mutex_t	someone_died_mutex;
+	// pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
 
 typedef struct s_philo
@@ -51,8 +56,9 @@ typedef struct s_philo
 	unsigned long	simulation_start;
 	// pthread_mutex_t	*left_mutex;
 	// pthread_mutex_t	*right_mutex;
-	pthread_mutex_t	last_meal_mutex;
-	pthread_mutex_t	time_must_eat_mutex;
+	// pthread_mutex_t	last_meal_mutex;
+	// pthread_mutex_t	time_must_eat_mutex;
+	sem_t			*forks;
 }	t_philo;
 
 /*
@@ -102,9 +108,6 @@ void			*monitor_routine(void *arg);
 void			check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
 
-/*
-** Debug
-*/
 void			print_struct(t_datas *philo);
 
 #endif	
