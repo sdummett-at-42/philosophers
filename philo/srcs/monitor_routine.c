@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 15:13:49 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:21:30 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*monitor_routine(void *arg)
 			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		}
 		pthread_mutex_unlock(&philo->last_meal_mutex);
-		//ft_usleep(10);
+		ft_usleep(10);
 		pthread_mutex_lock(&philo->datas->someone_died_mutex);
 		pthread_mutex_lock(&philo->time_must_eat_mutex);
 	}
