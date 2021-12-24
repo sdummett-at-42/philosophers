@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 11:59:02 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:07:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_philo	**init_philos(t_datas *datas)
 		philo[i]->time_must_eat = datas->time_must_eat;
 		place_forks(philo[i], datas);
 		pthread_mutex_init(&philo[i]->last_meal_mutex, NULL);
+		pthread_mutex_init(&philo[i]->time_must_eat_mutex, NULL);
 		i++;
 	}
 	return (philo);
