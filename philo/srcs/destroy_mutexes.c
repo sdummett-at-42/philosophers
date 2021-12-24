@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:09:52 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 21:42:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 10:39:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void	destroy_mutexes(t_datas *datas)
 		i++;
 	}
 	pthread_mutex_destroy(&datas->someone_died_mutex);
+	pthread_mutex_destroy(&datas->someone_speak_mutex);
 }

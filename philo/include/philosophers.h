@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 22:13:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 10:38:05 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_datas
 	unsigned long	time_must_eat;
 	bool			someone_died;
 	pthread_mutex_t	someone_died_mutex;
+	pthread_mutex_t	someone_speak_mutex;
 	pthread_t		**philo;
 	pthread_mutex_t	**fork_mutex;
 	unsigned long	simulation_start_ms;

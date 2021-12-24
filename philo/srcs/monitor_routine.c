@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 21:45:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 11:18:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	*monitor_routine(void *arg)
 			if (!philo->datas->someone_died)
 			{
 				philo->datas->someone_died = true;
+				pthread_mutex_lock(&philo->datas->someone_speak_mutex);
 				printf(BRED "%-6ld %-2d died\n"RESET,
 					currtime - philo->simulation_start, philo->id);
+				pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
 			}
 			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		}
