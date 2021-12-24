@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 10:38:05 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 11:58:37 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,37 @@
 typedef struct s_datas
 {
 	int				philo_number;
+	bool			someone_died;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
-	bool			someone_died;
-	pthread_mutex_t	someone_died_mutex;
-	pthread_mutex_t	someone_speak_mutex;
 	pthread_t		**philo;
 	pthread_mutex_t	**fork_mutex;
-	unsigned long	simulation_start_ms;
+	pthread_mutex_t	someone_died_mutex;
+	pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
 
 typedef struct s_philo
 {
 	int				id;
+	int				time_must_eat;
+	t_datas			*datas;
 	unsigned long	last_meal;
 	unsigned long	simulation_start;
 	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	*left_mutex;
 	pthread_mutex_t	*right_mutex;
-	t_datas			*datas;
 }	t_philo;
 
 /*
 ** Utils
 */
-void			ft_strerror(char *str);
 int				ft_strlen(char *str);
-bool			is_number(char *arg);
 int				ft_atoi(const char *str);
+bool			is_number(char *arg);
 void			ft_putstr(char *str);
+void			ft_strerror(char *str);
 void			ft_usleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 
@@ -79,13 +79,13 @@ void			drop_forks(t_philo *philo);
 void			*monitor_routine(void *arg);
 
 /*
-** Philosophers routine
+** routine.c
 */
 void			*routine(void *arg);
-int				philo_is_taking_forks(t_philo *philo);
 int				philo_is_eating(t_philo *philo);
 int				philo_is_sleeping(t_philo *philo);
 int				philo_is_thinking(t_philo *philo);
+int				philo_is_taking_forks(t_philo *philo);
 
 /*
 ** Debug

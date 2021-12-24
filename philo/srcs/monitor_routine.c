@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 11:18:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 12:03:14 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*monitor_routine(void *arg)
 
 	philo = arg;
 	ft_usleep(10);
-	while (!philo->datas->someone_died)
+	while (!philo->datas->someone_died && philo->time_must_eat != 0)
 	{
 		pthread_mutex_lock(&philo->last_meal_mutex);
 		currtime = gettime();

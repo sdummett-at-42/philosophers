@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 10:42:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 12:04:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ void	*routine(void *arg)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
-	while (true)
+	while (true && philo->time_must_eat != 0)
 	{
 		if (!philo_is_taking_forks(philo))
 			break ;
 		if (!philo_is_eating(philo))
+			break ;
+		if (philo->time_must_eat != -1 && philo->time_must_eat > 0)
+			philo->time_must_eat = philo->time_must_eat - 1;
+		if (philo->time_must_eat == 0)
 			break ;
 		if (!philo_is_sleeping(philo))
 			break ;
