@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 15:06:53 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 17:23:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,23 @@ void			frees(t_datas *datas);
 void			unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
-void			*monitor_routine(void *arg);
 
 /*
 ** routine.c
 */
 void			*routine(void *arg);
 int				philo_is_eating(t_philo *philo);
+int				philo_has_eaten_enough(t_philo *philo);
 int				philo_is_sleeping(t_philo *philo);
 int				philo_is_thinking(t_philo *philo);
 int				philo_is_taking_forks(t_philo *philo);
+
+/*
+** monitor_routine.c
+*/
+void			*monitor_routine(void *arg);
+void			check_if_philo_died(t_philo *philo);
+void			print_death_msg(t_philo *philo, unsigned long currtime);
 
 /*
 ** Debug

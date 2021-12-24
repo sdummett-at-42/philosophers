@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 14:58:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 17:05:31 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int	print_msg(t_philo *philo, int state)
 		return (0);
 	}
 	if (state == THINKING)
-		printf(MAG "%-6ld %-2d is thinking\n"RESET, current_time, philo->id);
+		printf(MAG "%-6ld %-2d is thinking\n"RESET,
+			current_time, philo->id + 1);
 	if (state == FORK_TAKEN)
-		printf(YEL "%-6ld %-2d has taken fork\n"RESET, current_time, philo->id);
+		printf(YEL "%-6ld %-2d has taken fork\n"RESET,
+			current_time, philo->id + 1);
 	if (state == EATING)
-		printf(GRN "%-6ld %-2d is eating\n"RESET, current_time, philo->id);
+		printf(GRN "%-6ld %-2d is eating\n"RESET,
+			current_time, philo->id + 1);
 	if (state == SLEEPING)
-		printf(BLU "%-6ld %-2d is sleeping\n"RESET, current_time, philo->id);
+		printf(BLU "%-6ld %-2d is sleeping\n"RESET, current_time, philo->id + 1);
 	pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 	pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
 	return (1);
