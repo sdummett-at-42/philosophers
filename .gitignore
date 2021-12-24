@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 21:00:24 by sdummett          #+#    #+#              #
-#    Updated: 2021/09/10 21:00:32 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/24 18:45:05 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,3 +14,4 @@ philo/philo
 *.o
 .vscode
 philo/vgcore*
+philo_bonus/philo_bonus
