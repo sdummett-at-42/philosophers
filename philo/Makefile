@@ -6,12 +6,12 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/23 13:02:52 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/24 12:12:27 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -c #-g#3 -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -c -g#3 -fsanitize=address
 NAME		= philo
 
 INCLUDES	= $(wildcard include/*.h)

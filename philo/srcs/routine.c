@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 12:04:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/24 12:22:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ void	*routine(void *arg)
 		if (!philo_is_eating(philo))
 			break ;
 		if (philo->time_must_eat != -1 && philo->time_must_eat > 0)
+		{
 			philo->time_must_eat = philo->time_must_eat - 1;
-		if (philo->time_must_eat == 0)
-			break ;
+			if (philo->time_must_eat == 0)
+				break ;
+		}
 		if (!philo_is_sleeping(philo))
 			break ;
 		if (!philo_is_thinking(philo))
@@ -56,6 +58,10 @@ int	philo_is_taking_forks(t_philo *philo)
 			pthread_mutex_unlock(philo->right_mutex);
 		return (0);
 	}
+	if (philo->id % 2 == 0)
+		pthread_mutex_lock(philo->right_mutex);
+	else
+		pthread_mutex_lock(philo->left_mutex);
 	if (!print_msg(philo, FORK_TAKEN))
 	{
 		drop_forks(philo);
