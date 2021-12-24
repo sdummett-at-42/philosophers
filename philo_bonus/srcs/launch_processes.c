@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   launch_processes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:29:14 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/24 20:40:39 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 21:01:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int ac, char **av)
+void	launch_processes(t_datas *datas, t_philo **philo)
 {
-	t_datas	datas;
-	(void)datas;
+	int		i;
+	sem_t	*forks;
 
-	if (ac < 5 || ac > 6)
+	forks = sem_open("forks", datas->philo_number);
+	i = 0;
+	while (i < datas->philo_number)
 	{
-		ft_strerror(BRED"Error: Not enough or too much arguments\n"RESET);
-		return (1);
+		if (fork() == 0)
+		{
+			start_diner(philo[i]);
+			break ;
+		}
+		i++;
 	}
-	if (!check_args(av + 1))
-	{
-		ft_strerror(BRED"Error: Bad arguments\n"RESET);
-		return (2);
-	}
-	start_simulation(&datas, av + 1);
-	printf(BMAG"Hello world!\n"RESET);
-	sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
-	return (0);
 }

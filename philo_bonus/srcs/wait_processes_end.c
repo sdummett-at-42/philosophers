@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   wait_processes_end.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:29:14 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/24 21:01:33 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 21:05:42 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int ac, char **av)
+void	wait_processes_end(t_datas *datas)
 {
-	t_datas	datas;
-	(void)datas;
+	int	i;
 
-	if (ac < 5 || ac > 6)
+	i = 0;
+	while (i < datas->philo_number)
 	{
-		ft_strerror(BRED"Error: Not enough or too much arguments\n"RESET);
-		return (1);
+		wait(NULL);
+		i++;
 	}
-	if (!check_args(av + 1))
-	{
-		ft_strerror(BRED"Error: Bad arguments\n"RESET);
-		return (2);
-	}
-	start_simulation(&datas, av + 1);
-	printf(BMAG"Hello world!\n"RESET);
-	sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
-	return (0);
 }

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:29:14 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 20:48:36 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 20:21:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int ac, char **av)
+int	check_args(char **args)
 {
-	t_datas	datas;
-	(void)datas;
+	int	i;
 
-	if (ac < 5 || ac > 6)
+	i = 0;
+	while (args[i] != NULL)
 	{
-		ft_strerror(BRED"Error: Not enough or too much arguments\n"RESET);
-		return (1);
+		if (!is_number(args[i]))
+			return (0);
+		i++;
 	}
-	if (!check_args(av + 1))
-	{
-		ft_strerror(BRED"Error: Bad arguments\n"RESET);
-		return (2);
-	}
-	start_simulation(&datas, av + 1);
-	printf(BMAG"Hello world!\n"RESET);
-	sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
-	return (0);
+	return (1);
 }

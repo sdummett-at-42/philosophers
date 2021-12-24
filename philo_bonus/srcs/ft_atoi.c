@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 20:29:14 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 21:10:27 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 20:14:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int ac, char **av)
+int	ft_atoi(const char *str)
 {
-	t_datas	datas;
-	(void)datas;
+	int		sign;
+	long	nb;
 
-	if (ac < 5 || ac > 6)
+	nb = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		ft_strerror(BRED"Error: Not enough or too much arguments\n"RESET);
-		return (1);
+		if (*str == '-')
+			sign = sign * -1;
+		str++;
 	}
-	if (!check_args(av + 1))
+	while (*str >= '0' && *str <= '9')
 	{
-		ft_strerror(BRED"Error: Bad arguments\n"RESET);
-		return (2);
+		nb = nb * 10 + *str - 48;
+		str++;
+		if (sign < 0 && nb > 2147483648)
+			return (0);
+		if (sign > 0 && nb > 2147483647)
+			return (-1);
 	}
-	start_simulation(&datas, av + 1);
-	printf(BMAG"Hello world!\n"RESET);
-	sem_open("forks", O_CREAT | O_EXCL | S_IRWXU, ft_atoi(av[1]));
-	return (0);
+	return (nb * sign);
 }
