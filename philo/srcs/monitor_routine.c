@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 18:50:05 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 15:03:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*monitor_routine(void *arg)
 {
-	t_philo				*philo;
+	t_philo	*philo;
 
 	philo = arg;
 	ft_usleep(5);
@@ -25,7 +25,7 @@ void	*monitor_routine(void *arg)
 		pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		pthread_mutex_unlock(&philo->time_must_eat_mutex);
 		check_if_philo_died(philo);
-		ft_usleep(1);
+		ft_usleep(60);
 		pthread_mutex_lock(&philo->datas->someone_died_mutex);
 		pthread_mutex_lock(&philo->time_must_eat_mutex);
 	}
