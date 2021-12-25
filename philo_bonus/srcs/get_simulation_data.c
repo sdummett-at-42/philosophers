@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 11:23:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 12:19:49 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	get_simulation_data(t_datas *datas, char **args)
 		datas->time_must_eat = ft_atoi(args[4]);
 	else
 	datas->time_must_eat = -1;
-	datas->someone_died = false; // 
+	datas->someone_died = false;
 	datas->forks_sem = sem_open("forks", O_CREAT, S_IRUSR | S_IWUSR, datas->philo_number);
-	if (datas->forks_sem == SEM_FAILED)
-		printf("main => sem_open failed\n");
 	datas->someone_speak_sem = sem_open("mic", O_CREAT, S_IRUSR | S_IWUSR, 1);
+	datas->someone_died_sem = sem_open("death", O_CREAT, S_IRUSR | S_IWUSR, 1);
+	// pthread_mutex_init(&datas->someone_died_mutex, NULL);
 }

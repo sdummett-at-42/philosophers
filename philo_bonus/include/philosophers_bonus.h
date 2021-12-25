@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 11:33:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 12:07:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <sys/wait.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include <semaphore.h>
 # include "colorcodes.h"
-# include <fcntl.h>
 
 # define THINKING 0
 # define FORK_TAKEN 1
@@ -40,11 +40,12 @@ typedef struct s_datas
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
 	sem_t			*someone_speak_sem;
+	sem_t			*someone_died_sem;
 	sem_t			*forks_sem;
 	pid_t			**pid;
 	// pthread_t		**philo;
 	// pthread_mutex_t	**fork_mutex;
-	// pthread_mutex_t	someone_died_mutex;
+	pthread_mutex_t	someone_died_mutex;
 	// pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
 
@@ -59,8 +60,7 @@ typedef struct s_philo
 	pthread_mutex_t	time_must_eat_mutex;
 	sem_t			*forks_sem;
 	sem_t			*someone_speak_sem;
-	// pthread_mutex_t	*left_mutex;
-	// pthread_mutex_t	*right_mutex;
+	sem_t			*someone_died_sem;
 }	t_philo;
 
 /*
