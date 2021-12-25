@@ -6,37 +6,11 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 17:05:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 18:39:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-// int	philo_is_taking_forks(t_philo *philo)
-// {
-// 	if (philo->id % 2 == 0)
-// 		pthread_mutex_lock(philo->left_mutex);
-// 	else
-// 		pthread_mutex_lock(philo->right_mutex);
-// 	if (!print_msg(philo, FORK_TAKEN))
-// 	{
-// 		if (philo->id % 2 == 0)
-// 			pthread_mutex_unlock(philo->left_mutex);
-// 		else
-// 			pthread_mutex_unlock(philo->right_mutex);
-// 		return (0);
-// 	}
-// 	if (philo->id % 2 == 0)
-// 		pthread_mutex_lock(philo->right_mutex);
-// 	else
-// 		pthread_mutex_lock(philo->left_mutex);
-// 	if (!print_msg(philo, FORK_TAKEN))
-// 	{
-// 		drop_forks(philo);
-// 		return (0);
-// 	}
-// 	return (1);
-// }
 
 int	philo_is_taking_forks(t_philo *philo)
 {

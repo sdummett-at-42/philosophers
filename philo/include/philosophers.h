@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 16:55:28 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 18:40:58 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@
 typedef struct s_datas
 {
 	int				philo_number;
+	int				**forks;
 	bool			someone_died;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
+	unsigned long	simulation_start;
 	pthread_t		**philo;
 	pthread_mutex_t	**fork_mutex;
-	int				**forks;
 	pthread_mutex_t	someone_died_mutex;
 	pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
@@ -51,7 +52,6 @@ typedef struct s_philo
 	t_datas			*datas;
 	pthread_mutex_t	last_meal_mutex;
 	unsigned long	last_meal;
-	unsigned long	simulation_start;
 	pthread_mutex_t	*left_mutex;
 	pthread_mutex_t	*right_mutex;
 	pthread_mutex_t	time_must_eat_mutex;

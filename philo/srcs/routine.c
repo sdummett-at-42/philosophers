@@ -6,7 +6,8 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 16:48:27 by sdummett         ###   ########.fr       */
+
+/*   Updated: 2021/12/25 18:24:43 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +20,6 @@ void	*routine(void *arg)
 
 	philo = arg;
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
-	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);

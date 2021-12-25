@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 17:05:31 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 18:06:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	print_msg(t_philo *philo, int state)
 
 	pthread_mutex_lock(&philo->datas->someone_died_mutex);
 	pthread_mutex_lock(&philo->datas->someone_speak_mutex);
-	current_time = gettime() - philo->simulation_start;
+	current_time = gettime() - philo->datas->simulation_start;
 	if (philo->datas->someone_died)
 	{
 		pthread_mutex_unlock(&philo->datas->someone_died_mutex);

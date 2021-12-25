@@ -6,8 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 17:00:12 by sdummett         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2021/12/25 18:19:43 by sdummett         ###   ########.fr       *//*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
@@ -61,6 +60,6 @@ void	print_death_msg(t_philo *philo, unsigned long currtime)
 {
 	pthread_mutex_lock(&philo->datas->someone_speak_mutex);
 	printf(BRED "%-6ld %-2d died\n"RESET,
-		currtime - philo->simulation_start, philo->id + 1);
+		currtime - philo->datas->simulation_start, philo->id + 1);
 	pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
 }
