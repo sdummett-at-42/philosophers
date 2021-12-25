@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 12:07:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 20:44:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <semaphore.h>
+# include <errno.h>
 # include "colorcodes.h"
 
 # define THINKING 0
@@ -34,7 +35,7 @@
 typedef struct s_datas
 {
 	int				philo_number;
-	bool			someone_died;
+	// bool			someone_died;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -45,7 +46,7 @@ typedef struct s_datas
 	pid_t			**pid;
 	// pthread_t		**philo;
 	// pthread_mutex_t	**fork_mutex;
-	pthread_mutex_t	someone_died_mutex;
+	// pthread_mutex_t	someone_died_mutex;
 	// pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
 
@@ -62,6 +63,8 @@ typedef struct s_philo
 	sem_t			*someone_speak_sem;
 	sem_t			*someone_died_sem;
 }	t_philo;
+
+extern bool	someone_died;
 
 /*
 ** philo_bonus/

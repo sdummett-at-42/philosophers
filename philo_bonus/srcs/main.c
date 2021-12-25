@@ -6,11 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 22:27:43 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 19:25:12 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+bool someone_died = false;
 
 int	main(int ac, char **av)
 {

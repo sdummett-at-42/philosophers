@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 12:25:57 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 20:44:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ int	print_msg(t_philo *philo, int state)
 {
 	unsigned long	current_time;
 
-	// pthread_mutex_lock(&philo->datas->someone_died_mutex);
-
-	// pthread_mutex_lock(&philo->datas->someone_speak_mutex);
-	sem_wait(philo->someone_died_sem);
+	if (sem_wait(philo->someone_died_sem) == EINVAL)
+	{
+		printf("EINVAL\n");
+		return (0);
+	}
 	sem_wait(philo->someone_speak_sem);
 	current_time = gettime() - philo->simulation_start;
-	if (philo->datas->someone_died)
+	if (someone_died)
 	{
-		// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
-		// pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
 		sem_post(philo->someone_died_sem);
 		sem_post(philo->someone_speak_sem);
 		return (0);
@@ -41,8 +40,6 @@ int	print_msg(t_philo *philo, int state)
 			current_time, philo->id + 1);
 	if (state == SLEEPING)
 		printf(BLU "%-6ld %-2d is sleeping\n"RESET, current_time, philo->id + 1);
-	// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
-	// pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
 	sem_post(philo->someone_died_sem);
 	sem_post(philo->someone_speak_sem);
 	return (1);

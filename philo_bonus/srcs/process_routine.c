@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:45:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 12:32:30 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 20:20:14 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	process_routine(t_philo *philo)
 {
-	pthread_t			monitor_thread;
-
+	pthread_t	monitor_thread;
 
 	philo->forks_sem = sem_open("forks", 0);
 	if (philo->forks_sem == SEM_FAILED)

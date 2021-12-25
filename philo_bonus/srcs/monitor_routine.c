@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 22:33:14 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 12:22:30 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 20:48:44 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,19 @@ void	*monitor_routine(void *arg)
 
 	philo = arg;
 	ft_usleep(5);
-	// pthread_mutex_lock(&philo->datas->someone_died_mutex);
 	sem_wait(philo->someone_died_sem);
 	pthread_mutex_lock(&philo->time_must_eat_mutex);
-	while (!philo->datas->someone_died && philo->time_must_eat != 0)
+	// sem_wait(philo->someone_died_sem);
+	while (!someone_died && philo->time_must_eat != 0)
 	{
-		// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		sem_post(philo->someone_died_sem);
 		pthread_mutex_unlock(&philo->time_must_eat_mutex);
 		check_if_philo_died(philo);
 		ft_usleep(1);
-		// pthread_mutex_lock(&philo->datas->someone_died_mutex);
-		sem_wait(philo->someone_died_sem);
+
 		pthread_mutex_lock(&philo->time_must_eat_mutex);
+		 sem_wait(philo->someone_died_sem);
 	}
-	// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 	sem_post(philo->someone_died_sem);
 	pthread_mutex_unlock(&philo->time_must_eat_mutex);
 	return (NULL);
@@ -42,21 +40,23 @@ void	check_if_philo_died(t_philo *philo)
 {
 	unsigned long	currtime;
 
-	pthread_mutex_lock(&philo->last_meal_mutex);
+	// /pthread_mutex_lock(&philo->last_meal_mutex);
 	currtime = gettime();
 	if (currtime - philo->last_meal > philo->datas->time_to_die)
 	{			
-		// pthread_mutex_lock(&philo->datas->someone_died_mutex);
 		sem_wait(philo->someone_died_sem);
-		if (!philo->datas->someone_died)
+		if (!someone_died)
 		{
-			philo->datas->someone_died = true;
+			someone_died = true;
 			print_death_msg(philo, currtime);
+			sem_post(philo->someone_died_sem);
+			sem_close(philo->someone_died_sem);
+			sem_unlink("forks");
+			return ;
 		}
-		// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 		sem_post(philo->someone_died_sem);
 	}
-	pthread_mutex_unlock(&philo->last_meal_mutex);
+	// pthread_mutex_unlock(&philo->last_meal_mutex);
 }
 
 void	print_death_msg(t_philo *philo, unsigned long currtime)
