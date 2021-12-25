@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 15:55:48 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 16:30:50 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,15 @@ int	philo_is_eating(t_philo *philo)
 		drop_forks(philo);
 		return (0);
 	}
-	pthread_mutex_lock(&philo->last_meal_mutex);
+	pthread_mutex_lock(&philo->is_eating_mutex);
 	philo->last_meal = gettime();
+	// philo->is_eating = true;
+	pthread_mutex_unlock(&philo->is_eating_mutex);
 	ft_usleep(philo->datas->time_to_eat);
 	drop_forks(philo);
-	pthread_mutex_unlock(&philo->last_meal_mutex);
+	// pthread_mutex_lock(&philo->is_eating_mutex);
+	// philo->is_eating = false;
+	// pthread_mutex_unlock(&philo->is_eating_mutex);
 	return (1);
 }
 
