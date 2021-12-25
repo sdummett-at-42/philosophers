@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 16:18:35 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 16:55:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ typedef struct s_philo
 	int				left_fork;
 	int				right_fork;
 	t_datas			*datas;
-	pthread_mutex_t	is_eating_mutex;
-	bool			is_eating;
+	pthread_mutex_t	last_meal_mutex;
 	unsigned long	last_meal;
 	unsigned long	simulation_start;
 	pthread_mutex_t	*left_mutex;
