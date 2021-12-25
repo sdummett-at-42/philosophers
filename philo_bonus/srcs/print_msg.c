@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/24 23:59:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/25 11:26:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ int	print_msg(t_philo *philo, int state)
 
 	// pthread_mutex_lock(&philo->datas->someone_died_mutex);
 	// pthread_mutex_lock(&philo->datas->someone_speak_mutex);
+	//sem_wait(philo->someone_speak_sem);
 	current_time = gettime() - philo->simulation_start;
 	// if (philo->datas->someone_died)
 	// {
 	// 	// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 	// 	// pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
+		// sem_post(philo->someone_speak_sem);
 	// 	return (0);
 	// }
 	if (state == THINKING)
@@ -38,5 +40,6 @@ int	print_msg(t_philo *philo, int state)
 		printf(BLU "%-6ld %-2d is sleeping\n"RESET, current_time, philo->id + 1);
 	// pthread_mutex_unlock(&philo->datas->someone_died_mutex);
 	// pthread_mutex_unlock(&philo->datas->someone_speak_mutex);
+	//sem_post(philo->someone_speak_sem);
 	return (1);
 }
