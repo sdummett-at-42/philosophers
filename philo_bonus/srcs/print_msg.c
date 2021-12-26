@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 20:44:39 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:02:34 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,28 @@ int	print_msg(t_philo *philo, int state)
 {
 	unsigned long	current_time;
 
-	if (sem_wait(philo->someone_died_sem) == EINVAL)
-	{
-		printf("EINVAL\n");
-		return (0);
-	}
 	sem_wait(philo->someone_speak_sem);
 	current_time = gettime() - philo->simulation_start;
-	if (someone_died)
+	sem_wait(philo->someone_died_sem);
+	philo->confirm_someone_died_sem = 
+		sem_open(philo->datas->confirm_someone_died_name, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, (unsigned int)1);
+	if (philo->confirm_someone_died_sem != SEM_FAILED)
+	{
+		sem_close(philo->confirm_someone_died_sem);
+		sem_unlink(philo->datas->confirm_someone_died_name);
+	}
+	else
 	{
 		sem_post(philo->someone_died_sem);
 		sem_post(philo->someone_speak_sem);
 		return (0);
 	}
+	// if (false) //someone_died)
+	// {
+	// 	sem_post(philo->someone_died_sem);
+	// 	sem_post(philo->someone_speak_sem);
+	// 	return (0);
+	// }
 	if (state == THINKING)
 		printf(MAG "%-6ld %-2d is thinking\n"RESET,
 			current_time, philo->id + 1);

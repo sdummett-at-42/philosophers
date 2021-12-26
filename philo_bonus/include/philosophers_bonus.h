@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 20:44:18 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 16:47:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 typedef struct s_datas
 {
 	int				philo_number;
-	// bool			someone_died;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -43,11 +42,12 @@ typedef struct s_datas
 	sem_t			*someone_speak_sem;
 	sem_t			*someone_died_sem;
 	sem_t			*forks_sem;
+	char			*forks_name;
+	char			*someone_died_name;
+	char			*someone_speak_name;
+	sem_t			*confirm_someone_died_sem;
+	char			*confirm_someone_died_name;
 	pid_t			**pid;
-	// pthread_t		**philo;
-	// pthread_mutex_t	**fork_mutex;
-	// pthread_mutex_t	someone_died_mutex;
-	// pthread_mutex_t	someone_speak_mutex;
 }	t_datas;
 
 typedef struct s_philo
@@ -61,10 +61,10 @@ typedef struct s_philo
 	pthread_mutex_t	time_must_eat_mutex;
 	sem_t			*forks_sem;
 	sem_t			*someone_speak_sem;
+	sem_t			*confirm_someone_died_sem;
 	sem_t			*someone_died_sem;
+	char			*confirm_someone_died_name;
 }	t_philo;
-
-extern bool	someone_died;
 
 /*
 ** philo_bonus/
