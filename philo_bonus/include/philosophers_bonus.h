@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 17:10:55 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 19:31:10 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <sys/types.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <fcntl.h>
@@ -31,6 +32,8 @@
 # define FORK_TAKEN 1
 # define EATING 2
 # define SLEEPING 3
+
+# define FILENAME_LEN 125
 
 typedef struct s_datas
 {
@@ -73,6 +76,9 @@ void			launch_processes(t_datas *datas, t_philo **philo);
 void			process_routine(t_philo *philo);
 void			wait_processes_end(t_datas *datas);
 char			*ft_strdup(const char *str);
+void			*ft_calloc(size_t nmemb, size_t size);
+char			*string_generator(void);
+
 
 /*
 ** Utils
