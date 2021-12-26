@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:45:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:43:37 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 00:26:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	process_routine(t_philo *philo)
 	philo->someone_died_sem = sem_open(philo->someone_died_name, 0);
 	if (philo->someone_died_sem == SEM_FAILED)
 		printf("sem_open failed (death)\n");
-	pthread_mutex_init(&philo->time_ate_mutex, NULL);
+	pthread_mutex_init(&philo->time_must_eat_mutex, NULL);
 	pthread_mutex_init(&philo->last_meal_mutex, NULL);
 		// philo->simulation_start = gettime();
 	while (gettime() < philo->simulation_start)
@@ -36,7 +36,8 @@ void	process_routine(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
-	while (true && philo->time_must_eat != 0)
+	printf("before loop time ate %ld\n", philo->time_must_eat);
+	while (philo->time_must_eat != 0)
 	{
 		if (!philo_is_taking_forks(philo))
 			break ;
@@ -52,7 +53,7 @@ void	process_routine(t_philo *philo)
 	pthread_join(monitor_thread, NULL);
 	sem_close(philo->forks_sem);
 	sem_close(philo->someone_speak_sem);
-	pthread_mutex_destroy(&philo->time_ate_mutex);
+	pthread_mutex_destroy(&philo->time_must_eat_mutex);
 	pthread_mutex_destroy(&philo->last_meal_mutex);
 	exit(0);
 }

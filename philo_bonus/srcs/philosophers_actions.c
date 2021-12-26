@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:04:35 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 00:25:36 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ int	philo_is_eating(t_philo *philo)
 
 int	philo_has_eaten_enough(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->time_ate_mutex);
-	if (philo->time_ate > 0)
+	pthread_mutex_lock(&philo->time_must_eat_mutex);
+	if (philo->time_must_eat > 0)
 	{
-		philo->time_ate = philo->time_ate - 1;
-		if (philo->time_ate == 0)
+		philo->time_must_eat = philo->time_must_eat - 1;
+		if (philo->time_must_eat == 0)
 		{
-			pthread_mutex_unlock(&philo->time_ate_mutex);
+			pthread_mutex_unlock(&philo->time_must_eat_mutex);
 			return (1);
 		}
 	}
-	pthread_mutex_unlock(&philo->time_ate_mutex);
+	pthread_mutex_unlock(&philo->time_must_eat_mutex);
 	return (0);
 }
 

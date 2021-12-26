@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:09:52 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 00:27:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	start_simulation(t_philo *philo, char **args)
 {
 	get_simulation_data(philo, args);
-//	philo = init_philos(philo);
 	launch_processes(philo);
 	wait_processes_end(philo);
 

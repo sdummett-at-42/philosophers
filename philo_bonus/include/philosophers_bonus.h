@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:30:00 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 00:25:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,25 @@
 
 typedef struct s_philo
 {
-	int				philo_number;
 	int				id;
+	pid_t			*pid;
+	int				philo_number;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
-	int				time_ate;
+	pthread_mutex_t	time_must_eat_mutex;
 	sem_t			*someone_speak_sem;
-	sem_t			*someone_died_sem;
 	sem_t			*forks_sem;
 	char			*forks_name;
+	sem_t			*someone_died_sem;
 	char			*someone_died_name;
 	char			*someone_speak_name;
 	sem_t			*confirm_someone_died_sem;
 	char			*confirm_someone_died_name;
 	unsigned long	last_meal;
-	pid_t			*pid;
-	unsigned long	simulation_start;
 	pthread_mutex_t	last_meal_mutex;
-	pthread_mutex_t	time_ate_mutex;
+	unsigned long	simulation_start;
 }	t_philo;
 
 /*
@@ -80,13 +79,10 @@ void			ft_putstr(char *str);
 void			ft_strerror(char *str);
 void			ft_usleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
-
 int				check_args(char **args);
 void			start_simulation(t_philo *philo, char **args);
 void			get_simulation_data(t_philo *philo, char **args);
 void			init_mutexes(t_philo *philo);
-// t_philo			**init_philos(t_philo *philo);
-// void			launch_threads(t_philo *philo, t_philo **philo);
 void			wait_threads_end(t_philo *philo);
 void			destroy_mutexes(t_philo *philo);
 void			frees(t_philo *philo);
