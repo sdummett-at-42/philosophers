@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/26 20:43:56 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/26 21:05:34 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJS_DIR	= objs/
 SRCS_FILES	= main.c ft_atoi.c ft_putstr.c ft_strerror.c ft_strlen.c ft_usleep.c \
 				gettime.c check_args.c is_number.c start_simulation.c \
 				get_simulation_data.c launch_processes.c process_routine.c \
-				init_philos.c wait_processes_end.c monitor_routine.c \
+				wait_processes_end.c monitor_routine.c \
 				philosophers_actions.c print_msg.c ft_strdup.c string_generator.c \
 				ft_calloc.c ft_rand.c
 

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:45:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 17:06:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:25:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ void	process_routine(t_philo *philo)
 {
 	pthread_t	monitor_thread;
 
-	philo->forks_sem = sem_open(philo->datas->forks_name, 0);
+	philo->forks_sem = sem_open(philo->forks_name, 0);
 	if (philo->forks_sem == SEM_FAILED)
 		printf("sem_open failed (forks)\n");
-	philo->someone_speak_sem = sem_open(philo->datas->someone_speak_name, 0);
+	philo->someone_speak_sem = sem_open(philo->someone_speak_name, 0);
 	if (philo->someone_speak_sem == SEM_FAILED)
 		printf("sem_open failed (mic)\n");
-	philo->someone_died_sem = sem_open(philo->datas->someone_died_name, 0);
+	philo->someone_died_sem = sem_open(philo->someone_died_name, 0);
 	if (philo->someone_died_sem == SEM_FAILED)
 		printf("sem_open failed (death)\n");
+	pthread_mutex_init(&philo->time_ate_mutex, NULL);
+	pthread_mutex_init(&philo->last_meal_mutex, NULL);
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
 	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
@@ -46,5 +48,7 @@ void	process_routine(t_philo *philo)
 	pthread_join(monitor_thread, NULL);
 	sem_close(philo->forks_sem);
 	sem_close(philo->someone_speak_sem);
+	pthread_mutex_destroy(&philo->time_ate_mutex);
+	pthread_mutex_destroy(&philo->last_meal_mutex);
 	exit(0);
 }

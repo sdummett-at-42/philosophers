@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 20:38:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:16:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@
 
 # define FILENAME_LEN 125
 
-typedef struct s_datas
+typedef struct s_philo
 {
 	int				philo_number;
+	int				id;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
+	int				time_ate;
 	sem_t			*someone_speak_sem;
 	sem_t			*someone_died_sem;
 	sem_t			*forks_sem;
@@ -50,31 +52,24 @@ typedef struct s_datas
 	char			*someone_speak_name;
 	sem_t			*confirm_someone_died_sem;
 	char			*confirm_someone_died_name;
-	pid_t			**pid;
-}	t_datas;
-
-typedef struct s_philo
-{
-	int				id;
-	int				time_must_eat;
-	t_datas			*datas;
 	unsigned long	last_meal;
+	pid_t			*pid;
 	unsigned long	simulation_start;
 	pthread_mutex_t	last_meal_mutex;
-	pthread_mutex_t	time_must_eat_mutex;
-	sem_t			*forks_sem;
-	sem_t			*someone_speak_sem;
-	sem_t			*confirm_someone_died_sem;
-	sem_t			*someone_died_sem;
-	char			*confirm_someone_died_name;
+	pthread_mutex_t	time_ate_mutex;
+	// sem_t			*forks_sem;
+	// sem_t			*someone_speak_sem;
+	// sem_t			*confirm_someone_died_sem;
+	// sem_t			*someone_died_sem;
+	// char			*confirm_someone_died_name;
 }	t_philo;
 
 /*
 ** philo_bonus/
 */
-void			launch_processes(t_datas *datas, t_philo **philo);
+void			launch_processes(t_philo *philo);
 void			process_routine(t_philo *philo);
-void			wait_processes_end(t_datas *datas);
+void			wait_processes_end(t_philo *philo);
 char			*ft_strdup(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*string_generator(void);
@@ -92,14 +87,14 @@ void			ft_usleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 
 int				check_args(char **args);
-void			start_simulation(t_datas *datas, char **args);
-void			get_simulation_data(t_datas *datas, char **args);
-void			init_mutexes(t_datas *datas);
-t_philo			**init_philos(t_datas *datas);
-void			launch_threads(t_datas *datas, t_philo **philo);
-void			wait_threads_end(t_datas *datas);
-void			destroy_mutexes(t_datas *datas);
-void			frees(t_datas *datas);
+void			start_simulation(t_philo *philo, char **args);
+void			get_simulation_data(t_philo *philo, char **args);
+void			init_mutexes(t_philo *philo);
+// t_philo			**init_philos(t_philo *philo);
+// void			launch_threads(t_philo *philo, t_philo **philo);
+void			wait_threads_end(t_philo *philo);
+void			destroy_mutexes(t_philo *philo);
+void			frees(t_philo *philo);
 void			unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
@@ -121,6 +116,6 @@ void			*monitor_routine(void *arg);
 void			check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
 
-void			print_struct(t_datas *philo);
+void			print_struct(t_philo *philo);
 
 #endif	

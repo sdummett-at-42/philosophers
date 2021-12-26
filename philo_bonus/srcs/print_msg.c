@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 17:16:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:03:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	print_msg(t_philo *philo, int state)
 	current_time = gettime() - philo->simulation_start;
 	sem_wait(philo->someone_died_sem);
 	philo->confirm_someone_died_sem = sem_open(
-			philo->datas->confirm_someone_died_name,
+			philo->confirm_someone_died_name,
 			O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, (unsigned int)1);
 	if (philo->confirm_someone_died_sem != SEM_FAILED)
 	{
 		sem_close(philo->confirm_someone_died_sem);
-		sem_unlink(philo->datas->confirm_someone_died_name);
+		sem_unlink(philo->confirm_someone_died_name);
 	}
 	else
 	{
