@@ -19,6 +19,10 @@ void	*routine(void *arg)
 	pthread_t			monitor_thread;
 
 	philo = arg;
+	while (gettime() < philo->datas->simulation_start)
+		ft_usleep(1);
+	if (philo->id % 2)
+		ft_usleep(10);
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();

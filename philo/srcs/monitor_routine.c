@@ -17,7 +17,10 @@ void	*monitor_routine(void *arg)
 	unsigned long	currtime;
 
 	philo = arg;
-	ft_usleep(5);
+	if (philo->id % 2)
+		ft_usleep(30 + 2);
+	else
+		ft_usleep(2);
 	while (true)
 	{
 		pthread_mutex_lock(&philo->last_meal_mutex);
@@ -51,7 +54,7 @@ void	*monitor_routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->time_must_eat_mutex);
-		ft_usleep(5);
+		ft_usleep(2);
 	}
 	return (NULL);
 }

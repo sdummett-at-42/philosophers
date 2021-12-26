@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 18:39:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 15:00:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,105 +14,51 @@
 
 int	philo_is_taking_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+	while (true)
 	{
-		while (true)
+		pthread_mutex_lock(philo->left_mutex);
+		if (*(philo->datas->forks[philo->left_fork]) == 1)
 		{
-			pthread_mutex_lock(philo->left_mutex);
-			if (*(philo->datas->forks[philo->left_fork]) == 1)
+			pthread_mutex_unlock(philo->left_mutex);
+			ft_usleep(1);
+		}
+		else
+		{
+			*(philo->datas->forks[philo->left_fork]) = 1;
+			pthread_mutex_unlock(philo->left_mutex);
+			if (!print_msg(philo, FORK_TAKEN))
 			{
-				pthread_mutex_unlock(philo->left_mutex);
-				ft_usleep(1);
+					pthread_mutex_lock(philo->left_mutex);
+					*(philo->datas->forks[philo->left_fork]) = 0;
+					pthread_mutex_unlock(philo->left_mutex);
+					return (0);
 			}
-			else
+			while (true)
 			{
-				*(philo->datas->forks[philo->left_fork]) = 1;
-				pthread_mutex_unlock(philo->left_mutex);
-				if (!print_msg(philo, FORK_TAKEN))
-				{
-						pthread_mutex_lock(philo->left_mutex);
-						*(philo->datas->forks[philo->left_fork]) = 0;
-						pthread_mutex_unlock(philo->left_mutex);
-						return (0);
-				}
-				while (true)
+				pthread_mutex_lock(philo->right_mutex);
+				if (*(philo->datas->forks[philo->right_fork]) == 1)
 				{
 					pthread_mutex_unlock(philo->right_mutex);
-					if (*(philo->datas->forks[philo->right_fork]) == 1)
+					ft_usleep(1);
+				}
+				else
+				{
+					*(philo->datas->forks[philo->right_fork]) = 1;
+					pthread_mutex_unlock(philo->right_mutex);
+					if (!print_msg(philo, FORK_TAKEN))
 					{
-						pthread_mutex_unlock(philo->right_mutex);
-						ft_usleep(1);
+							pthread_mutex_lock(philo->left_mutex);
+							*(philo->datas->forks[philo->left_fork]) = 0;
+							pthread_mutex_unlock(philo->left_mutex);
+							pthread_mutex_lock(philo->right_mutex);
+							*(philo->datas->forks[philo->right_fork]) = 0;
+							pthread_mutex_unlock(philo->right_mutex);
+							return (0);
 					}
-					else
-					{
-						*(philo->datas->forks[philo->right_fork]) = 1;
-						pthread_mutex_unlock(philo->right_mutex);
-						if (!print_msg(philo, FORK_TAKEN))
-						{
-								pthread_mutex_lock(philo->left_mutex);
-								*(philo->datas->forks[philo->left_fork]) = 0;
-								pthread_mutex_unlock(philo->left_mutex);
-								pthread_mutex_lock(philo->right_mutex);
-								*(philo->datas->forks[philo->right_fork]) = 0;
-								pthread_mutex_unlock(philo->right_mutex);
-								return (0);
-						}
-						return (1);
-					}
+					return (1);
 				}
 			}
 		}
-	}
-	else 
-	{
-		while (true)
-		{
-			pthread_mutex_lock(philo->right_mutex);
-			if (*(philo->datas->forks[philo->right_fork]) == 1)
-			{
-				pthread_mutex_unlock(philo->right_mutex);
-				ft_usleep(1);
-			}
-			else
-			{
-				*(philo->datas->forks[philo->right_fork]) = 1;
-				pthread_mutex_unlock(philo->right_mutex);
-				if (!print_msg(philo, FORK_TAKEN))
-				{
-						pthread_mutex_lock(philo->right_mutex);
-						*(philo->datas->forks[philo->right_fork]) = 0;
-						pthread_mutex_unlock(philo->right_mutex);
-						return (0);
-				}
-				while (true)
-				{
-					pthread_mutex_unlock(philo->left_mutex);
-					if (*(philo->datas->forks[philo->left_fork]) == 1)
-					{
-						pthread_mutex_unlock(philo->left_mutex);
-						ft_usleep(1);
-					}
-					else
-					{
-						*(philo->datas->forks[philo->left_fork]) = 1;
-						pthread_mutex_unlock(philo->left_mutex);
-						pthread_mutex_unlock(philo->right_mutex);
-						if (!print_msg(philo, FORK_TAKEN))
-						{
-								pthread_mutex_lock(philo->left_mutex);
-								*(philo->datas->forks[philo->left_fork]) = 0;
-								pthread_mutex_unlock(philo->left_mutex);
-								pthread_mutex_lock(philo->right_mutex);
-								*(philo->datas->forks[philo->right_fork]) = 0;
-								pthread_mutex_unlock(philo->right_mutex);
-								return (0);
-						}
-						return (1);
-					}
-				}
-			}
-		}
-		return (1);
 	}
 }
 
