@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:16:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:30:00 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ typedef struct s_philo
 	unsigned long	simulation_start;
 	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	time_ate_mutex;
-	// sem_t			*forks_sem;
-	// sem_t			*someone_speak_sem;
-	// sem_t			*confirm_someone_died_sem;
-	// sem_t			*someone_died_sem;
-	// char			*confirm_someone_died_name;
 }	t_philo;
 
 /*

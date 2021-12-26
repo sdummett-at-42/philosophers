@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:45:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:25:17 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 21:43:37 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void	process_routine(t_philo *philo)
 		printf("sem_open failed (death)\n");
 	pthread_mutex_init(&philo->time_ate_mutex, NULL);
 	pthread_mutex_init(&philo->last_meal_mutex, NULL);
+		// philo->simulation_start = gettime();
+	while (gettime() < philo->simulation_start)
+		ft_usleep(1);
+	if (philo->id % 2)
+		ft_usleep(10);
 	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
-	philo->simulation_start = gettime();
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
