@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 19:59:33 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:45:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	init_sem_name(t_datas *datas)
 {
 	datas->forks_name = string_generator();
-	ft_usleep(1);
+	// ft_usleep(1);
 	datas->someone_speak_name = string_generator();
-	ft_usleep(1);
+	// ft_usleep(1);
 	datas->someone_died_name = string_generator();
-	ft_usleep(1);
+	// ft_usleep(1);
 	datas->confirm_someone_died_name = string_generator();
-	ft_usleep(1);
+	// ft_usleep(1);
 	printf("%s\n%s\n%s\n%s\n", datas->forks_name, datas->someone_speak_name,
 			datas->someone_died_name, datas->confirm_someone_died_name);
 

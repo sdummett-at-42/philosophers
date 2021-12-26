@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 20:00:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:05:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ void	start_simulation(t_datas *datas, char **args)
 
 	get_simulation_data(datas, args);
 	philo = init_philos(datas);
-	// for (int i = 0; i < 10; i++){
-	// 	printf("%s\n", string_generator());
-	// }
-
-	// launch_processes(datas, philo);
-	// wait_processes_end(datas);
+	launch_processes(datas, philo);
+	wait_processes_end(datas);
 
 
 	// sem_unlink("forks");

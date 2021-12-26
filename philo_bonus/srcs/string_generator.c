@@ -6,25 +6,11 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 19:06:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 20:01:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:46:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
-char	get_random_letter(void)
-{
-	unsigned long	c;
-
-	c = gettime();
-	while ((c % 1000) < '!' || (c % 1000) > '~')
-		c = c / 2;
-	if ((char)c < 0)
-		c = c * -1;
-	printf("[%d]", (char)c);
-	return ((char)c);
-
-}
 
 char	*get_random_string(void)
 {
@@ -40,12 +26,13 @@ char	*get_random_string(void)
 	i = 0;
 	while (i < FILENAME_LEN - 1)
 	{
-		new[i] = get_random_letter();
+		new[i] = '/';
+		while (new[i] == '/')
+			new[i] = ft_rand(33, 127);
 		ft_usleep(i % 10);
 		i++;
 	}
 	new[i] = '\0';
-	printf("\n");
 	return (new);
 }
 

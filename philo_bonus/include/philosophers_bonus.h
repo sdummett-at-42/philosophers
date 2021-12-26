@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 19:31:10 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 20:38:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void			wait_processes_end(t_datas *datas);
 char			*ft_strdup(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*string_generator(void);
-
+unsigned int 	ft_rand(unsigned int start_range, unsigned int end_range);
 
 /*
 ** Utils
