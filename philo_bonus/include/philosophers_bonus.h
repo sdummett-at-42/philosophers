@@ -6,12 +6,12 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 16:47:38 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:10:55 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_BONUSH
-# define PHILOSOPHERS_BONUSH
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 # include <string.h>
 # include <stdio.h>
@@ -69,10 +69,10 @@ typedef struct s_philo
 /*
 ** philo_bonus/
 */
-void		launch_processes(t_datas *datas, t_philo **philo);
-void		process_routine(t_philo *philo);
-void		wait_processes_end(t_datas *datas);
-char		*ft_strdup(const char *str);
+void			launch_processes(t_datas *datas, t_philo **philo);
+void			process_routine(t_philo *philo);
+void			wait_processes_end(t_datas *datas);
+char			*ft_strdup(const char *str);
 
 /*
 ** Utils

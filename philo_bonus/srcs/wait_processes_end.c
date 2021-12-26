@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 21:01:33 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 16:29:03 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:16:24 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	wait_processes_end(t_datas *datas)
 	sem_unlink(datas->forks_name);
 	sem_unlink(datas->someone_died_name);
 	sem_unlink(datas->someone_died_name);
-	// pthread_mutex_destroy(&datas->someone_died_mutex);
 }

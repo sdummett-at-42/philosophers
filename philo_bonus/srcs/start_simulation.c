@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 16:29:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:15:14 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	start_simulation(t_datas *datas, char **args)
 	wait_processes_end(datas);
 	// sem_unlink("forks");
 	// free(datas->d_name);
-
 	// init_mutexes(datas);
 	// launch_threads(datas, philo);
 	// wait_threads_end(datas);
