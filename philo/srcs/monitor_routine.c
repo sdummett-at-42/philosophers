@@ -6,56 +6,64 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 15:16:45 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:10:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+bool	philo_died(t_philo *philo)
+{
+	unsigned long	currtime;
+
+	pthread_mutex_lock(&philo->last_meal_mutex);
+	currtime = gettime();
+	if (currtime - philo->last_meal >= philo->datas->time_to_die)
+	{
+		pthread_mutex_unlock(&philo->last_meal_mutex);
+		pthread_mutex_lock(&philo->datas->someone_died_mutex);
+		if (!philo->datas->someone_died)
+		{
+			philo->datas->someone_died = true;
+			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
+			print_death_msg(philo, currtime);
+			return (true);
+		}
+		pthread_mutex_unlock(&philo->datas->someone_died_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->last_meal_mutex);
+	return (false);
+}
+
+int	philo_ate_enough(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->time_must_eat_mutex);
+	if (philo->time_must_eat == 0)
+	{
+		pthread_mutex_unlock(&philo->time_must_eat_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&philo->time_must_eat_mutex);
+	return (false);
+}
+
 void	*monitor_routine(void *arg)
 {
 	t_philo			*philo;
-	unsigned long	currtime;
 
 	philo = arg;
 	if (philo->id % 2)
-		ft_usleep(30 + 2);
+		ft_msleep(30 + 2);
 	else
-		ft_usleep(2);
+		ft_msleep(2);
 	while (true)
 	{
-		pthread_mutex_lock(&philo->last_meal_mutex);
-		currtime = gettime();
-		if (currtime - philo->last_meal >= philo->datas->time_to_die)
-		{
-			pthread_mutex_unlock(&philo->last_meal_mutex);
-			pthread_mutex_lock(&philo->time_must_eat_mutex);
-			if (philo->time_must_eat == 0)
-			{
-				pthread_mutex_unlock(&philo->time_must_eat_mutex);
-				break ;
-			}
-			pthread_mutex_unlock(&philo->time_must_eat_mutex);
-			pthread_mutex_lock(&philo->datas->someone_died_mutex);
-			if (!philo->datas->someone_died)
-			{
-				philo->datas->someone_died = true;
-				pthread_mutex_unlock(&philo->datas->someone_died_mutex);
-				print_death_msg(philo, currtime);
-				break ;
-			}
-			pthread_mutex_unlock(&philo->datas->someone_died_mutex);
+		if (philo_died(philo))
 			break ;
-		}
-		pthread_mutex_unlock(&philo->last_meal_mutex);
-		pthread_mutex_lock(&philo->time_must_eat_mutex);
-		if (philo->time_must_eat == 0)
-		{
-			pthread_mutex_unlock(&philo->time_must_eat_mutex);
+		if (philo_ate_enough(philo))
 			break ;
-		}
-		pthread_mutex_unlock(&philo->time_must_eat_mutex);
-		ft_usleep(2);
+		ft_msleep(2);
 	}
 	return (NULL);
 }

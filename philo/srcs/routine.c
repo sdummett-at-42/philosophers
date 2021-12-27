@@ -6,11 +6,23 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 15:14:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:19:27 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	init_simulation(t_philo *philo, pthread_t *monitor_thread)
+{
+	while (gettime() < philo->datas->simulation_start)
+		ft_msleep(1);
+	if (philo->id % 2)
+		ft_msleep(10);
+	pthread_create(monitor_thread, NULL, &monitor_routine, philo);
+	pthread_mutex_lock(&philo->last_meal_mutex);
+	philo->last_meal = gettime();
+	pthread_mutex_unlock(&philo->last_meal_mutex);
+}
 
 void	*routine(void *arg)
 {
@@ -18,15 +30,8 @@ void	*routine(void *arg)
 	pthread_t			monitor_thread;
 
 	philo = arg;
-	while (gettime() < philo->datas->simulation_start)
-		ft_usleep(1);
-	if (philo->id % 2)
-		ft_usleep(10);
-	pthread_create(&monitor_thread, NULL, &monitor_routine, philo);
-	pthread_mutex_lock(&philo->last_meal_mutex);
-	philo->last_meal = gettime();
-	pthread_mutex_unlock(&philo->last_meal_mutex);
-	while (true && philo->time_must_eat != 0)
+	init_simulation(philo, &monitor_thread);
+	while (philo->time_must_eat != 0)
 	{
 		if (!philo_is_taking_forks(philo))
 			break ;

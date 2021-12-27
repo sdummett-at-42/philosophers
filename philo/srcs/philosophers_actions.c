@@ -6,61 +6,11 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 15:15:15 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:10:29 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-int	philo_is_taking_forks(t_philo *philo)
-{
-	while (true)
-	{
-		pthread_mutex_lock(philo->left_mutex);
-		if (*(philo->datas->forks[philo->left_fork]) == 1)
-		{
-			pthread_mutex_unlock(philo->left_mutex);
-			ft_usleep(1);
-		}
-		else
-		{
-			*(philo->datas->forks[philo->left_fork]) = 1;
-			pthread_mutex_unlock(philo->left_mutex);
-			if (!print_msg(philo, FORK_TAKEN))
-			{
-				pthread_mutex_lock(philo->left_mutex);
-				*(philo->datas->forks[philo->left_fork]) = 0;
-				pthread_mutex_unlock(philo->left_mutex);
-				return (0);
-			}
-			while (true)
-			{
-				pthread_mutex_lock(philo->right_mutex);
-				if (*(philo->datas->forks[philo->right_fork]) == 1)
-				{
-					pthread_mutex_unlock(philo->right_mutex);
-					ft_usleep(1);
-				}
-				else
-				{
-					*(philo->datas->forks[philo->right_fork]) = 1;
-					pthread_mutex_unlock(philo->right_mutex);
-					if (!print_msg(philo, FORK_TAKEN))
-					{
-						pthread_mutex_lock(philo->left_mutex);
-						*(philo->datas->forks[philo->left_fork]) = 0;
-						pthread_mutex_unlock(philo->left_mutex);
-						pthread_mutex_lock(philo->right_mutex);
-						*(philo->datas->forks[philo->right_fork]) = 0;
-						pthread_mutex_unlock(philo->right_mutex);
-						return (0);
-					}
-					return (1);
-				}
-			}
-		}
-	}
-}
 
 int	philo_is_eating(t_philo *philo)
 {
@@ -72,7 +22,7 @@ int	philo_is_eating(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
-	ft_usleep(philo->datas->time_to_eat);
+	ft_msleep(philo->datas->time_to_eat);
 	drop_forks(philo);
 	return (1);
 }
@@ -97,7 +47,7 @@ int	philo_is_sleeping(t_philo *philo)
 {
 	if (!print_msg(philo, SLEEPING))
 		return (0);
-	ft_usleep(philo->datas->time_to_sleep);
+	ft_msleep(philo->datas->time_to_sleep);
 	return (1);
 }
 

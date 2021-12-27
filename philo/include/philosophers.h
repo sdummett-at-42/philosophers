@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 15:08:28 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:09:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define FORK_TAKEN 1
 # define EATING 2
 # define SLEEPING 3
+
+# define NOT_TAKEN 0
+# define TAKEN 1
 
 typedef struct s_datas
 {
@@ -65,7 +68,7 @@ int				ft_atoi(const char *str);
 bool			is_number(char *arg);
 void			ft_putstr(char *str);
 void			ft_strerror(char *str);
-void			ft_usleep(unsigned long time_to_sleep);
+void			ft_msleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 
 int				check_args(char **args);
@@ -80,16 +83,30 @@ void			frees(t_datas *datas);
 void			unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
+void			drop_left_fork(t_philo *philo);
+void			drop_right_fork(t_philo *philo);
 
 /*
 ** routine.c
 */
 void			*routine(void *arg);
+
+/*
+** philosophers_actions.c
+*/
 int				philo_is_eating(t_philo *philo);
 int				philo_has_eaten_enough(t_philo *philo);
 int				philo_is_sleeping(t_philo *philo);
 int				philo_is_thinking(t_philo *philo);
+
+/*
+** philosophers_actions_on_forks.c
+*/
 int				philo_is_taking_forks(t_philo *philo);
+int				try_take_left_forks(t_philo *philo);
+int				take_left_fork(t_philo *philo);
+int				try_take_right_fork(t_philo *philo);
+int				take_right_fork(t_philo *philo);
 
 /*
 ** monitor_routine.c
