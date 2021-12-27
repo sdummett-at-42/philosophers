@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 13:27:06 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:14:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			wait_processes_end(t_philo *philo);
 char			*ft_strdup(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*string_generator(void);
-unsigned int 	ft_rand(unsigned int start_range, unsigned int end_range);
+unsigned int	ft_rand(unsigned int start_range, unsigned int end_range);
 void			get_simulation_data(t_philo *philo, char **args);
 void			release_ressources(t_philo *philo);
 
@@ -77,6 +77,13 @@ void			release_ressources(t_philo *philo);
 void			process_routine(t_philo *philo);
 void			release_subprocess_ressources(t_philo *philo);
 void			init_mutexes_and_semaphores(t_philo *philo);
+
+/*
+** process_routine.c
+*/
+void			*monitor_routine(void *arg);
+int				check_if_philo_died(t_philo *philo);
+void			print_death_msg(t_philo *philo, unsigned long currtime);
 
 /*
 ** Utils
@@ -103,12 +110,5 @@ int				philo_has_eaten_enough(t_philo *philo);
 int				philo_is_sleeping(t_philo *philo);
 int				philo_is_thinking(t_philo *philo);
 int				philo_is_taking_forks(t_philo *philo);
-
-/*
-** process_routine.c
-*/
-void			*monitor_routine(void *arg);
-void			check_if_philo_died(t_philo *philo);
-void			print_death_msg(t_philo *philo, unsigned long currtime);
 
 #endif	

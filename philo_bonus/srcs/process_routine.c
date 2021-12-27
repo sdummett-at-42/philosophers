@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:45:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 13:30:06 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:08:16 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ void	release_subprocess_ressources(t_philo *philo)
 	pthread_mutex_destroy(&philo->last_meal_mutex);
 	release_ressources(philo);
 }
-
