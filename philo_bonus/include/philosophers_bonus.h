@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 00:25:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:27:06 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,37 +56,41 @@ typedef struct s_philo
 	unsigned long	last_meal;
 	pthread_mutex_t	last_meal_mutex;
 	unsigned long	simulation_start;
+	pthread_t		monitor_thread;
 }	t_philo;
 
 /*
 ** philo_bonus/
 */
 void			launch_processes(t_philo *philo);
-void			process_routine(t_philo *philo);
 void			wait_processes_end(t_philo *philo);
 char			*ft_strdup(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*string_generator(void);
 unsigned int 	ft_rand(unsigned int start_range, unsigned int end_range);
+void			get_simulation_data(t_philo *philo, char **args);
+void			release_ressources(t_philo *philo);
+
+/*
+** process_routine.c
+*/
+void			process_routine(t_philo *philo);
+void			release_subprocess_ressources(t_philo *philo);
+void			init_mutexes_and_semaphores(t_philo *philo);
 
 /*
 ** Utils
 */
-int				ft_strlen(const char *str);
 int				ft_atoi(const char *str);
 bool			is_number(char *arg);
 void			ft_putstr(char *str);
 void			ft_strerror(char *str);
-void			ft_usleep(unsigned long time_to_sleep);
+int				ft_strlen(const char *str);
+void			ft_msleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 int				check_args(char **args);
 void			start_simulation(t_philo *philo, char **args);
-void			get_simulation_data(t_philo *philo, char **args);
-void			init_mutexes(t_philo *philo);
 void			wait_threads_end(t_philo *philo);
-void			destroy_mutexes(t_philo *philo);
-void			frees(t_philo *philo);
-void			unlock_has_eat_and_speak_and_philo_is_alived(t_philo *philo);
 int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
 
@@ -101,12 +105,10 @@ int				philo_is_thinking(t_philo *philo);
 int				philo_is_taking_forks(t_philo *philo);
 
 /*
-** monitor_routine.c
+** process_routine.c
 */
 void			*monitor_routine(void *arg);
 void			check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
-
-void			print_struct(t_philo *philo);
 
 #endif	

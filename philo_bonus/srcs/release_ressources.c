@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_simulation.c                                 :+:      :+:    :+:   */
+/*   release_ressources.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 12:13:32 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/27 12:14:23 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/27 13:32:07 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	start_simulation(t_philo *philo, char **args)
+void	release_ressources(t_philo *philo)
 {
-	get_simulation_data(philo, args);
-	launch_processes(philo);
-	wait_processes_end(philo);
+	sem_close(philo->forks_sem);
+	sem_unlink(philo->forks_name);
+	sem_close(philo->someone_speak_sem);
+	sem_unlink(philo->someone_speak_name);
+	sem_close(philo->someone_died_sem);
+	sem_unlink(philo->someone_died_name);
+	free(philo->pid);
+	free(philo->forks_name);
+	free(philo->someone_speak_name);
+	free(philo->someone_died_name);
+	free(philo->confirm_someone_died_name);
 }

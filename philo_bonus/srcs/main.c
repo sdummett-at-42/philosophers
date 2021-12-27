@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:00:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:06:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	main(int ac, char **av)
 		ft_strerror(BRED"Error: Bad arguments\n"RESET);
 		return (2);
 	}
+	memset(&philo, 0, sizeof(t_philo));
 	start_simulation(&philo, av + 1);
+	release_ressources(&philo);
+
 	printf(BMAG"End of the simulation,\n"RESET);
 	return (0);
 }

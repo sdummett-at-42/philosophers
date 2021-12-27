@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/26 21:05:34 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/27 13:05:39 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,17 @@ INCLUDES	= $(wildcard include/*.h)
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	= main.c ft_atoi.c ft_putstr.c ft_strerror.c ft_strlen.c ft_usleep.c \
+SRCS_FILES	=	main.c ft_atoi.c ft_putstr.c ft_strerror.c ft_strlen.c ft_msleep.c \
 				gettime.c check_args.c is_number.c start_simulation.c \
 				get_simulation_data.c launch_processes.c process_routine.c \
-				wait_processes_end.c monitor_routine.c \
-				philosophers_actions.c print_msg.c ft_strdup.c string_generator.c \
-				ft_calloc.c ft_rand.c
+				wait_processes_end.c monitor_routine.c philosophers_actions.c \
+				print_msg.c ft_strdup.c string_generator.c ft_calloc.c ft_rand.c \
+				release_ressources.c
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})
 
 OBJS_FILES	= $(SRCS_FILES:.c=.o)
-OBJS			= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
+OBJS		= $(addprefix ${OBJS_DIR}, ${OBJS_FILES})
 
 RMRF		= rm -rf
 

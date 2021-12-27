@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 00:26:05 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:13:58 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 void	init_sem_name(t_philo *philo)
 {
 	philo->forks_name = string_generator();
-	// ft_usleep(1);
 	philo->someone_speak_name = string_generator();
-	// ft_usleep(1);
 	philo->someone_died_name = string_generator();
-	// ft_usleep(1);
 	philo->confirm_someone_died_name = string_generator();
-	// ft_usleep(1);
-	printf("%s\n%s\n%s\n%s\n", philo->forks_name, philo->someone_speak_name,
-			philo->someone_died_name, philo->confirm_someone_died_name);
-
 }
 
 void	get_simulation_data(t_philo *philo, char **args)
