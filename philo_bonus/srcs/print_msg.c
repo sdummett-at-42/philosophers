@@ -6,18 +6,14 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:03:46 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:39:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	print_msg(t_philo *philo, int state)
+bool	check_someone_died(t_philo *philo)
 {
-	unsigned long	current_time;
-
-	sem_wait(philo->someone_speak_sem);
-	current_time = gettime() - philo->simulation_start;
 	sem_wait(philo->someone_died_sem);
 	philo->confirm_someone_died_sem = sem_open(
 			philo->confirm_someone_died_name,
@@ -26,13 +22,21 @@ int	print_msg(t_philo *philo, int state)
 	{
 		sem_close(philo->confirm_someone_died_sem);
 		sem_unlink(philo->confirm_someone_died_name);
+		return (false);
 	}
-	else
-	{
-		sem_post(philo->someone_died_sem);
-		sem_post(philo->someone_speak_sem);
+	sem_post(philo->someone_died_sem);
+	sem_post(philo->someone_speak_sem);
+	return (true);
+}
+
+int	print_msg(t_philo *philo, int state)
+{
+	unsigned long	current_time;
+
+	sem_wait(philo->someone_speak_sem);
+	current_time = gettime() - philo->simulation_start;
+	if (check_someone_died(philo))
 		return (0);
-	}
 	if (state == THINKING)
 		printf(MAG "%-6ld %-2d is thinking\n"RESET,
 			current_time, philo->id + 1);
