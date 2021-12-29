@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:26:38 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:50:20 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ void			ft_putstr(char *str);
 void			ft_strerror(char *str);
 void			ft_msleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
-
 int				check_args(char **args);
-void			start_simulation(t_datas *datas, char **args);
-void			get_simulation_data(t_datas *datas, char **args);
+void			start_simulation(t_datas *datas);
+void			init_simulation(t_datas *datas, char **args);
 void			init_mutexes(t_datas *datas);
 void			init_philos(t_datas *datas);
 void			launch_threads(t_datas *datas);
@@ -88,6 +87,9 @@ int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
 void			drop_left_fork(t_philo *philo);
 void			drop_right_fork(t_philo *philo);
+void			release_ressources(t_datas *datas);
+void			*ft_calloc(size_t nmemb, size_t size);
+
 
 /*
 ** routine.c

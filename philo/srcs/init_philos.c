@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 09:47:56 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:30:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:47:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	init_philos(t_datas *datas)
 {
 	int		i;
 
-	datas->philo = malloc(sizeof(t_philo *) * datas->philo_number);
-	datas->philo_thread = malloc(sizeof(pthread_t *) * datas->philo_number);
+	datas->philo = ft_calloc(datas->philo_number, sizeof(t_philo *));
+	datas->philo_thread = ft_calloc(datas->philo_number, sizeof(pthread_t *));
 	i = 0;
 	while (i < datas->philo_number)
 	{
-		datas->philo_thread[i] = malloc(sizeof(pthread_t));
-		datas->philo[i] = malloc(sizeof(t_philo));
+		datas->philo_thread[i] = ft_calloc(1, sizeof(pthread_t));
+		datas->philo[i] = ft_calloc(1, sizeof(t_philo));
 		datas->philo[i]->id = i;
 		datas->philo[i]->datas = datas;
 		datas->philo[i]->time_must_eat = datas->time_must_eat;

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:10:16 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:50:32 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int ac, char **av)
 		return (2);
 	}
 	memset(&datas, 0, sizeof(t_datas));
-	start_simulation(&datas, av + 1);
+	init_simulation(&datas, av + 1);
+	start_simulation(&datas);
+	release_ressources(&datas);
 	return (0);
 }

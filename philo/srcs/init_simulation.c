@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 15:17:55 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:50:08 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	get_simulation_data(t_datas *datas, char **args)
+void	init_simulation(t_datas *datas, char **args)
 {
 	int	i;
 
@@ -25,11 +25,13 @@ void	get_simulation_data(t_datas *datas, char **args)
 	else
 		datas->time_must_eat = -1;
 	datas->someone_died = false;
-	datas->forks = malloc(sizeof(int *) * datas->philo_number);
+	datas->forks = ft_calloc(datas->philo_number, sizeof(int *));
 	i = 0;
 	while (i < datas->philo_number)
 	{
-		datas->forks[i] = malloc(sizeof(int));
+		datas->forks[i] = ft_calloc(1, sizeof(int));
 		i++;
 	}
+	init_mutexes(datas);
+	init_philos(datas);
 }
