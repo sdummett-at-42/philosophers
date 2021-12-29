@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 21:01:33 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/26 21:18:12 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 18:07:42 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	wait_processes_end(t_philo *philo)
 {
-	int	i;
+	int		i;
+	pid_t	pid;
 
 	i = 0;
+	pid = waitpid(-1 , NULL, 0);
 	while (i < philo->philo_number)
 	{
-		waitpid(philo->pid[i], NULL, 0);
+		if (*(philo->pid) != pid)
+			kill(*(philo->pid), SIGTERM);
 		i++;
 	}
 	sem_close(philo->forks_sem);

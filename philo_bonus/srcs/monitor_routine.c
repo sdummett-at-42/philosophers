@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 22:33:14 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 15:22:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 18:18:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*monitor_routine(void *arg)
 {
-	t_philo				*philo;
+	t_philo	*philo;
 
 	philo = arg;
 	ft_msleep(5);

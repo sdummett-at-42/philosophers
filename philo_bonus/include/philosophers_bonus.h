@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 14:41:23 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 18:03:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <signal.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <fcntl.h>
