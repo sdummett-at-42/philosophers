@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/29 15:00:23 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/29 20:50:58 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ INCLUDES	= $(wildcard include/*.h)
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	=	main.c ft_atoi.c ft_putstr.c ft_strerror.c ft_strlen.c ft_msleep.c \
+SRCS_FILES	=	main.c ft_atoi.c ft_strerror.c ft_strlen.c ft_msleep.c \
 				gettime.c check_args.c is_number.c start_simulation.c \
 				init_simulation.c launch_processes.c process_routine.c \
 				wait_processes_end.c monitor_routine.c philosophers_actions.c \
-				print_msg.c ft_strdup.c string_generator.c ft_calloc.c ft_rand.c \
+				print_timestamp.c string_generator.c ft_calloc.c ft_rand.c \
 				release_ressources.c
 
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 18:03:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:56:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,56 +60,72 @@ typedef struct s_philo
 	pthread_t		monitor_thread;
 }	t_philo;
 
-/*
-** philo_bonus/
-*/
-void			launch_processes(t_philo *philo);
-void			wait_processes_end(t_philo *philo);
-char			*ft_strdup(const char *str);
+/* check_args.c */
+int				check_args(char **args);
+
+/* ft_atoi.c */
+int				ft_atoi(const char *str);
+
+/* ft_calloc.c */
 void			*ft_calloc(size_t nmemb, size_t size);
-char			*string_generator(void);
+
+/* ft_msleep.c */
+void			ft_msleep(unsigned long time_to_sleep);
+
+/* ft_rand.c */
 unsigned int	ft_rand(unsigned int start_range, unsigned int end_range);
+
+/* ft_strerror.c */
+void			ft_strerror(char *str);
+
+/* ft_strlen.c */
+int				ft_strlen(const char *str);
+
+/* gettime.c */
+unsigned long	gettime(void);
+
+/* init_simulation.c */
+int				init_sem_name(t_philo *philo);
+int				init_semaphores(t_philo *philo);
 int				init_simulation(t_philo *philo, char **args);
-void			release_ressources(t_philo *philo);
 
-/*
-** process_routine.c
-*/
-void			process_routine(t_philo *philo);
-void			release_subprocess_ressources(t_philo *philo);
-void			init_mutexes_and_semaphores(t_philo *philo);
+/* is_number.c */
+bool			is_number(char *arg);
 
-/*
-** process_routine.c
-*/
+/* launch_processes.c */
+void			launch_processes(t_philo *philo);
+
+/* monitor_routine.c */
 void			*monitor_routine(void *arg);
 int				check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
 
-/*
-** Utils
-*/
-int				ft_atoi(const char *str);
-bool			is_number(char *arg);
-void			ft_putstr(char *str);
-void			ft_strerror(char *str);
-int				ft_strlen(const char *str);
-void			ft_msleep(unsigned long time_to_sleep);
-unsigned long	gettime(void);
-int				check_args(char **args);
-int				start_simulation(t_philo *philo, char **args);
-void			wait_threads_end(t_philo *philo);
-int				print_msg(t_philo *philo, int state);
-void			drop_forks(t_philo *philo);
-
-/*
-** routine.c
-*/
-void			*routine(void *arg);
+/* philosophers_actions.c */
+int				philo_is_taking_forks(t_philo *philo);
 int				philo_is_eating(t_philo *philo);
 int				philo_has_eaten_enough(t_philo *philo);
 int				philo_is_sleeping(t_philo *philo);
 int				philo_is_thinking(t_philo *philo);
-int				philo_is_taking_forks(t_philo *philo);
+
+/* print_timestamp.c */
+bool			check_someone_died(t_philo *philo);
+int				print_timestamp(t_philo *philo, int state);
+
+/* process_routine.c */
+void			process_routine(t_philo *philo);
+void			init_mutexes_and_semaphores(t_philo *philo);
+void			release_subprocess_ressources(t_philo *philo);
+
+/* release_ressources.c */
+void			release_ressources(t_philo *philo);
+
+/* start_simulation.c */
+int				start_simulation(t_philo *philo, char **args);
+
+/* string_generator.c */
+char			*string_generator(void);
+
+/* wait_processes_end.c */
+void			wait_processes_end(t_philo *philo);
 
 #endif	

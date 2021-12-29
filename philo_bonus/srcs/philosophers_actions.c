@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 11:57:34 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:55:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	philo_is_taking_forks(t_philo *philo)
 {
 	sem_wait(philo->forks_sem);
-	if (!print_msg(philo, FORK_TAKEN))
+	if (!print_timestamp(philo, FORK_TAKEN))
 	{
 		sem_post(philo->forks_sem);
 		return (0);
 	}
 	sem_wait(philo->forks_sem);
-	if (!print_msg(philo, FORK_TAKEN))
+	if (!print_timestamp(philo, FORK_TAKEN))
 	{
 		sem_post(philo->forks_sem);
 		sem_post(philo->forks_sem);
@@ -32,7 +32,7 @@ int	philo_is_taking_forks(t_philo *philo)
 
 int	philo_is_eating(t_philo *philo)
 {
-	if (print_msg(philo, EATING) < 0)
+	if (print_timestamp(philo, EATING) < 0)
 	{
 		sem_post(philo->forks_sem);
 		sem_post(philo->forks_sem);
@@ -65,7 +65,7 @@ int	philo_has_eaten_enough(t_philo *philo)
 
 int	philo_is_sleeping(t_philo *philo)
 {
-	if (!print_msg(philo, SLEEPING))
+	if (!print_timestamp(philo, SLEEPING))
 		return (0);
 	ft_msleep(philo->time_to_sleep);
 	return (1);
@@ -73,7 +73,7 @@ int	philo_is_sleeping(t_philo *philo)
 
 int	philo_is_thinking(t_philo *philo)
 {
-	if (!print_msg(philo, THINKING))
+	if (!print_timestamp(philo, THINKING))
 		return (0);
 	return (1);
 }

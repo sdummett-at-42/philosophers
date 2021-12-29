@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_msg.c                                        :+:      :+:    :+:   */
+/*   print_timestamp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 19:39:26 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:50:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	check_someone_died(t_philo *philo)
 	return (true);
 }
 
-int	print_msg(t_philo *philo, int state)
+int	print_timestamp(t_philo *philo, int state)
 {
 	unsigned long	current_time;
 
