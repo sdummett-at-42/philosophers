@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 19:09:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:26:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define NOT_TAKEN 0
 # define TAKEN 1
 
+typedef struct s_philo t_philo;
+
 typedef struct s_datas
 {
 	int				philo_number;
@@ -40,7 +42,8 @@ typedef struct s_datas
 	unsigned long	time_to_sleep;
 	unsigned long	time_must_eat;
 	unsigned long	simulation_start;
-	pthread_t		**philo;
+	pthread_t		**philo_thread;
+	t_philo			**philo;
 	pthread_mutex_t	**fork_mutex;
 	pthread_mutex_t	someone_died_mutex;
 	pthread_mutex_t	someone_speak_mutex;
@@ -75,8 +78,8 @@ int				check_args(char **args);
 void			start_simulation(t_datas *datas, char **args);
 void			get_simulation_data(t_datas *datas, char **args);
 void			init_mutexes(t_datas *datas);
-t_philo			**init_philos(t_datas *datas);
-void			launch_threads(t_datas *datas, t_philo **philo);
+void			init_philos(t_datas *datas);
+void			launch_threads(t_datas *datas);
 void			wait_threads_end(t_datas *datas);
 void			destroy_mutexes(t_datas *datas);
 void			frees(t_datas *datas);

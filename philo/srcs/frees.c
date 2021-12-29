@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:40:09 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/25 15:13:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 15:27:36 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	frees(t_datas *datas)
 	{
 		free(datas->fork_mutex[i]);
 		free(datas->forks[i]);
-		free(datas->philo[i]);
+		free(datas->philo_thread[i]);
 		i++;
 	}
 	free(datas->fork_mutex);
 	free(datas->forks);
+	free(datas->philo_thread);
 	free(datas->philo);
 }
