@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_threads_end.c                                 :+:      :+:    :+:   */
+/*   check_if_someone_died.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:58:41 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:00:22 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/29 18:55:46 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/29 18:59:18 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	wait_threads_end(t_datas *datas)
+bool	check_if_someone_died(t_philo *philo)
 {
-	int		i;
-
-	i = 0;
-	while (i < datas->philo_number)
+	pthread_mutex_lock(&philo->datas->someone_died_mutex);
+	if (philo->datas->someone_died)
 	{
-		pthread_join(*(datas->philo_thread[i]), NULL);
-		i++;
+		pthread_mutex_unlock(&philo->datas->someone_died_mutex);
+		return (true);
 	}
+	pthread_mutex_unlock(&philo->datas->someone_died_mutex);
+	return (false);
 }

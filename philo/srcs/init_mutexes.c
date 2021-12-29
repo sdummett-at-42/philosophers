@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:01:43 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:47:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:22:03 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	init_mutexes(t_datas *datas)
 {
 	int	i;
 
-	datas->fork_mutex = ft_calloc(datas->philo_number, sizeof(pthread_mutex_t *));
+	datas->fork_mutex = ft_calloc(datas->philo_number,
+			sizeof(pthread_mutex_t *));
 	i = 0;
 	while (i < datas->philo_number)
 	{

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 19:10:29 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:18:20 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	philo_is_eating(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	philo->last_meal = gettime();
 	pthread_mutex_unlock(&philo->last_meal_mutex);
-	ft_msleep(philo->datas->time_to_eat);
+	if (!(ft_msleep_wrapper(philo, philo->datas->time_to_eat)))
+	{
+		drop_forks(philo);
+		return (0);
+	}
 	drop_forks(philo);
 	return (1);
 }
@@ -47,7 +51,8 @@ int	philo_is_sleeping(t_philo *philo)
 {
 	if (!print_msg(philo, SLEEPING))
 		return (0);
-	ft_msleep(philo->datas->time_to_sleep);
+	if (!(ft_msleep_wrapper(philo, philo->datas->time_to_sleep)))
+		return (0);
 	return (1);
 }
 

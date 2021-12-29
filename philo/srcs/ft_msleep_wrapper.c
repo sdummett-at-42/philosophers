@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_threads_end.c                                 :+:      :+:    :+:   */
+/*   ft_msleep_wrapper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:58:41 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:00:22 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/29 19:02:42 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/29 19:22:52 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	wait_threads_end(t_datas *datas)
+int	ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep)
 {
-	int		i;
+	unsigned long	time_to_reach;
 
-	i = 0;
-	while (i < datas->philo_number)
+	time_to_reach = gettime() + time_to_sleep;
+	while (gettime() < time_to_reach)
 	{
-		pthread_join(*(datas->philo_thread[i]), NULL);
-		i++;
+		ft_msleep(1);
+		if (check_if_someone_died(philo))
+			return (0);
 	}
+	return (1);
 }

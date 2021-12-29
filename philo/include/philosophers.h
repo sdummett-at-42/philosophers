@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:50:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:21:24 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define NOT_TAKEN 0
 # define TAKEN 1
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_datas
 {
@@ -90,7 +90,6 @@ void			drop_right_fork(t_philo *philo);
 void			release_ressources(t_datas *datas);
 void			*ft_calloc(size_t nmemb, size_t size);
 
-
 /*
 ** routine.c
 */
@@ -120,6 +119,15 @@ void			*monitor_routine(void *arg);
 void			check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
 
+/*
+** check_if_someone_died.c
+*/
+bool			check_if_someone_died(t_philo *philo);
+
+/*
+** ft_msleep_wrapper.c
+*/
+int				ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep);
 /*
 ** Debug
 */
