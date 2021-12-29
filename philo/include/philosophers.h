@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:21:24 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:53:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void			ft_msleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 int				check_args(char **args);
 void			start_simulation(t_datas *datas);
-void			init_simulation(t_datas *datas, char **args);
-void			init_mutexes(t_datas *datas);
-void			init_philos(t_datas *datas);
+int				init_simulation(t_datas *datas, char **args);
 void			launch_threads(t_datas *datas);
 void			wait_threads_end(t_datas *datas);
 void			destroy_mutexes(t_datas *datas);
