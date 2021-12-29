@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 13:51:36 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:58:15 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,24 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 	{
 		ft_strerror(BRED"Error: Not enough or too much arguments\n"RESET);
+		ft_strerror(BBLU"Usage: philo_bonus number_of_philosophers time_to_die "
+			"time_to_eat time_to_sleep "
+			"[number_of_times_each_philosopher_must_eat]\n"RESET);
 		return (1);
 	}
 	if (!check_args(av + 1))
 	{
 		ft_strerror(BRED"Error: Bad arguments\n"RESET);
+		ft_strerror(BBLU"Usage: philo_bonus number_of_philosophers time_to_die "
+			"time_to_eat time_to_sleep "
+			"[number_of_times_each_philosopher_must_eat]\n"RESET);
 		return (2);
 	}
 	memset(&philo, 0, sizeof(t_philo));
-	start_simulation(&philo, av + 1);
+	if (!(start_simulation(&philo, av + 1)))
+		printf("Something wrong happened\n");
+	else
+		printf(BMAG"End of the simulation\n"RESET);
 	release_ressources(&philo);
-	printf(BMAG"End of the simulation\n"RESET);
 	return (0);
 }

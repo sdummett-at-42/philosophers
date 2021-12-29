@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 15:14:08 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:41:23 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char			*ft_strdup(const char *str);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*string_generator(void);
 unsigned int	ft_rand(unsigned int start_range, unsigned int end_range);
-void			get_simulation_data(t_philo *philo, char **args);
+int				init_simulation(t_philo *philo, char **args);
 void			release_ressources(t_philo *philo);
 
 /*
@@ -96,7 +96,7 @@ int				ft_strlen(const char *str);
 void			ft_msleep(unsigned long time_to_sleep);
 unsigned long	gettime(void);
 int				check_args(char **args);
-void			start_simulation(t_philo *philo, char **args);
+int				start_simulation(t_philo *philo, char **args);
 void			wait_threads_end(t_philo *philo);
 int				print_msg(t_philo *philo, int state);
 void			drop_forks(t_philo *philo);
