@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 15:52:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 18:36:19 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	*routine(void *arg)
 			break ;
 	}
 	pthread_join(monitor_thread, NULL);
-	return (philo);
+	return (NULL);
 }
