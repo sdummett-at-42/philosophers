@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 17:20:35 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:18:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:15:30 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	philo_is_eating(t_philo *philo)
 {
-	if (print_msg(philo, EATING) < 0)
+	if (print_timestamp(philo, EATING) < 0)
 	{
 		drop_forks(philo);
 		return (0);
@@ -49,7 +49,7 @@ int	philo_has_eaten_enough(t_philo *philo)
 
 int	philo_is_sleeping(t_philo *philo)
 {
-	if (!print_msg(philo, SLEEPING))
+	if (!print_timestamp(philo, SLEEPING))
 		return (0);
 	if (!(ft_msleep_wrapper(philo, philo->datas->time_to_sleep)))
 		return (0);
@@ -58,7 +58,7 @@ int	philo_is_sleeping(t_philo *philo)
 
 int	philo_is_thinking(t_philo *philo)
 {
-	if (!print_msg(philo, THINKING))
+	if (!print_timestamp(philo, THINKING))
 		return (0);
 	return (1);
 }

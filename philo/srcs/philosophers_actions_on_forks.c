@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers_action_on_forks.c                     :+:      :+:    :+:   */
+/*   philosophers_actions_on_forks.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 19:05:34 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 19:10:14 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:15:42 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	take_left_fork(t_philo *philo)
 {
 	*(philo->datas->forks[philo->left_fork]) = TAKEN;
 	pthread_mutex_unlock(philo->left_mutex);
-	if (!print_msg(philo, FORK_TAKEN))
+	if (!print_timestamp(philo, FORK_TAKEN))
 	{
 		drop_left_fork(philo);
 		return (0);
@@ -79,7 +79,7 @@ int	take_right_fork(t_philo *philo)
 {
 	*(philo->datas->forks[philo->right_fork]) = TAKEN;
 	pthread_mutex_unlock(philo->right_mutex);
-	if (!print_msg(philo, FORK_TAKEN))
+	if (!print_timestamp(philo, FORK_TAKEN))
 	{
 		drop_forks(philo);
 		return (0);

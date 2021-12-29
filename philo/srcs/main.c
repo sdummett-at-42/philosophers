@@ -6,13 +6,13 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:00 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:02:09 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:29:59 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	print_usage(void)
+static void	print_usage(void)
 {
 	ft_strerror(BBLU"Usage: philo number_of_philosophers time_to_die "
 		"time_to_eat time_to_sleep "

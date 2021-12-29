@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:07:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:58:11 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:27:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_mutexes(t_datas *datas)
 	return (1);
 }
 
-static void	place_forks(t_philo *philo, t_datas *datas)
+void	place_forks(t_philo *philo, t_datas *datas)
 {
 	int	tmp;
 	int	right_fork;

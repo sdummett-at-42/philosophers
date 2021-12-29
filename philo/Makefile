@@ -6,7 +6,7 @@
 #    By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:05:51 by sdummett          #+#    #+#              #
-#    Updated: 2021/12/29 19:59:42 by sdummett         ###   ########.fr        #
+#    Updated: 2021/12/29 20:26:14 by sdummett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ INCLUDES	= $(wildcard include/*.h)
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	= main.c ft_strlen.c ft_strerror.c is_number.c check_args.c ft_atoi.c \
-				init_simulation.c debug.c start_simulation.c routine.c \
-				wait_threads_end.c destroy_mutexes.c \
-				launch_threads.c ft_putstr.c release_ressources.c \
-				gettime.c print_msg.c drop_forks.c monitor_routine.c \
+SRCS_FILES	=	main.c ft_strlen.c ft_strerror.c is_number.c check_args.c ft_atoi.c \
+				init_simulation.c start_simulation.c philosopher_routine.c \
+				wait_threads_end.c \
+				launch_threads.c release_ressources.c \
+				gettime.c print_timestamp.c drop_forks.c monitor_routine.c \
 				ft_msleep.c philosophers_actions.c philosophers_actions_on_forks.c \
 				ft_calloc.c check_if_someone_died.c ft_msleep_wrapper.c
 SRCS 		= $(addprefix ${SRCS_DIR}, ${SRC_FILES})

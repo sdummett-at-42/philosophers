@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   philosopher_routine.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:54:24 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 18:36:19 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:12:46 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_philo_thread(t_philo *philo, pthread_t *monitor_thread)
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 }
 
-void	*routine(void *arg)
+void	*philosopher_routine(void *arg)
 {
 	t_philo				*philo;
 	pthread_t			monitor_thread;

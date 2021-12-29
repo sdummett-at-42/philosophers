@@ -6,11 +6,31 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 13:02:02 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/27 19:10:03 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:31:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	*monitor_routine(void *arg)
+{
+	t_philo			*philo;
+
+	philo = arg;
+	if (philo->id % 2)
+		ft_msleep(30 + 2);
+	else
+		ft_msleep(2);
+	while (true)
+	{
+		if (philo_died(philo))
+			break ;
+		if (philo_ate_enough(philo))
+			break ;
+		ft_msleep(2);
+	}
+	return (NULL);
+}
 
 bool	philo_died(t_philo *philo)
 {
@@ -46,26 +66,6 @@ int	philo_ate_enough(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->time_must_eat_mutex);
 	return (false);
-}
-
-void	*monitor_routine(void *arg)
-{
-	t_philo			*philo;
-
-	philo = arg;
-	if (philo->id % 2)
-		ft_msleep(30 + 2);
-	else
-		ft_msleep(2);
-	while (true)
-	{
-		if (philo_died(philo))
-			break ;
-		if (philo_ate_enough(philo))
-			break ;
-		ft_msleep(2);
-	}
-	return (NULL);
 }
 
 void	print_death_msg(t_philo *philo, unsigned long currtime)
