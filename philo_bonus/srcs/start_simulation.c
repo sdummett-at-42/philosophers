@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:08:06 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/13 13:18:51 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 21:06:00 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/29 21:00:25 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-int	ft_strlen(char *str)
+int	start_simulation(t_philo *philo, char **args)
 {
-	int	len;
-
-	len = 0;
-	if (str == NULL)
-		return (len);
-	while (str[len] != '\0')
-		len++;
-	return (len);
+	if (!(init_simulation(philo, args)))
+		return (0);
+	launch_processes(philo);
+	wait_processes_end(philo);
+	return (1);
 }

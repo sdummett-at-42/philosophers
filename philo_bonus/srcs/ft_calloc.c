@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch_threads.c                                   :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:56:48 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:37:51 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/26 19:13:24 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/29 14:41:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-void	launch_threads(t_datas *datas)
+static void	ft_bzero(void *b, size_t len)
 {
-	int		i;
-
-	i = 0;
-	datas->simulation_start = gettime() + 1000;
-	while (i < datas->philo_number)
+	while (len)
 	{
-		pthread_create(datas->philo_thread[i], NULL,
-			&philosopher_routine, datas->philo[i]);
-		i++;
+		*(unsigned char *)b = 0;
+		b++;
+		len--;
 	}
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size * nmemb);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }

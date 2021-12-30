@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_number.c                                        :+:      :+:    :+:   */
+/*   launch_processes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 20:43:36 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/14 20:46:17 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/24 20:40:39 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/26 21:44:51 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-bool	is_number(char *arg)
+void	launch_processes(t_philo *philo)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (arg[i] == ' ' || (arg[i] >= 9 && arg[i] <= 13))
-		i++;
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
-	while (arg[i] != '\0')
+	philo->simulation_start = gettime() + 1000;
+	while (i < philo->philo_number)
 	{
-		if (!(arg[i] >= '0' && arg[i] <= '9'))
-			return (0);
+		philo->id = i;
+		philo->pid[i] = fork();
+		if (philo->pid[i] == 0)
+		{
+			process_routine(philo);
+			break ;
+		}
 		i++;
 	}
-	return (1);
 }

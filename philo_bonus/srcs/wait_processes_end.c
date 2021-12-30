@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gettime.c                                          :+:      :+:    :+:   */
+/*   wait_processes_end.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 23:45:34 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/23 21:47:11 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/24 21:01:33 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/30 14:49:26 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-unsigned long	gettime(void)
+void	wait_processes_end(t_philo *philo)
 {
-	struct timeval	time;
+	int	i;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	i = 0;
+	while (i < philo->philo_number)
+	{
+		waitpid(philo->pid[i], NULL, 0);
+		i++;
+	}
+	sem_close(philo->forks_sem);
+	sem_unlink(philo->forks_name);
+	sem_unlink(philo->someone_died_name);
+	sem_unlink(philo->someone_died_name);
 }
