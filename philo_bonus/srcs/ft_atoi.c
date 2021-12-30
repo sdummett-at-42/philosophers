@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msleep_wrapper.c                                :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 19:02:42 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:22:52 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 21:10:27 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 20:14:39 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-int	ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep)
+int	ft_atoi(const char *str)
 {
-	unsigned long	time_to_reach;
+	int		sign;
+	long	nb;
 
-	time_to_reach = gettime() + time_to_sleep;
-	while (gettime() < time_to_reach)
+	nb = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		ft_msleep(1);
-		if (check_if_someone_died(philo))
-			return (0);
+		if (*str == '-')
+			sign = sign * -1;
+		str++;
 	}
-	return (1);
+	while (*str >= '0' && *str <= '9')
+	{
+		nb = nb * 10 + *str - 48;
+		str++;
+		if (sign < 0 && nb > 2147483648)
+			return (0);
+		if (sign > 0 && nb > 2147483647)
+			return (-1);
+	}
+	return (nb * sign);
 }

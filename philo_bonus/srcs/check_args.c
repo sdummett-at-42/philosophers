@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msleep_wrapper.c                                :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 19:02:42 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:22:52 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/14 20:48:36 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 20:21:35 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-int	ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep)
+int	check_args(char **args)
 {
-	unsigned long	time_to_reach;
+	int	i;
 
-	time_to_reach = gettime() + time_to_sleep;
-	while (gettime() < time_to_reach)
+	i = 0;
+	while (args[i] != NULL)
 	{
-		ft_msleep(1);
-		if (check_if_someone_died(philo))
+		if (!is_number(args[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 20:35:31 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/30 15:02:37 by sdummett         ###   ########.fr       */
+/*   Updated: 2021/12/29 20:45:02 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,4 @@ unsigned int	ft_rand(unsigned int start_range, unsigned int end_range)
 	while (rand < start_range)
 		rand = rand + end_range - start_range;
 	return (rand);
-}
-
-void	drop_forks(t_philo *philo)
-{
-	drop_left_fork(philo);
-	drop_right_fork(philo);
 }

@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msleep_wrapper.c                                :+:      :+:    :+:   */
+/*   gettime.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 19:02:42 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:22:52 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/20 23:45:34 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/24 20:20:41 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
-int	ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep)
+unsigned long	gettime(void)
 {
-	unsigned long	time_to_reach;
+	struct timeval	time;
 
-	time_to_reach = gettime() + time_to_sleep;
-	while (gettime() < time_to_reach)
-	{
-		ft_msleep(1);
-		if (check_if_someone_died(philo))
-			return (0);
-	}
-	return (1);
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

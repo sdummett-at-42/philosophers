@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msleep_wrapper.c                                :+:      :+:    :+:   */
+/*   ft_strerror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 19:02:42 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 19:22:52 by sdummett         ###   ########.fr       */
+/*   Created: 2021/12/13 13:08:29 by sdummett          #+#    #+#             */
+/*   Updated: 2021/12/13 13:08:57 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_msleep_wrapper(t_philo *philo, unsigned long time_to_sleep)
+void	ft_strerror(char *str)
 {
-	unsigned long	time_to_reach;
-
-	time_to_reach = gettime() + time_to_sleep;
-	while (gettime() < time_to_reach)
-	{
-		ft_msleep(1);
-		if (check_if_someone_died(philo))
-			return (0);
-	}
-	return (1);
+	write(2, str, ft_strlen(str));
 }
