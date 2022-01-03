@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 22:33:14 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 18:18:25 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:16:38 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_if_philo_died(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	if (currtime - philo->last_meal > philo->time_to_die)
 	{
+		sem_wait(philo->someone_speak_sem);
 		sem_wait(philo->someone_died_sem);
 		philo->confirm_someone_died_sem = sem_open(
 				philo->confirm_someone_died_name,
@@ -53,6 +54,7 @@ int	check_if_philo_died(t_philo *philo)
 			sem_close(philo->confirm_someone_died_sem);
 		}
 		pthread_mutex_unlock(&philo->last_meal_mutex);
+		sem_post(philo->someone_speak_sem);
 		sem_post(philo->someone_died_sem);
 		return (1);
 	}
@@ -62,8 +64,6 @@ int	check_if_philo_died(t_philo *philo)
 
 void	print_death_msg(t_philo *philo, unsigned long currtime)
 {
-	sem_wait(philo->someone_speak_sem);
 	printf(BRED "%-6ld %-2d died\n"RESET,
 		currtime - philo->simulation_start, philo->id + 1);
-	sem_post(philo->someone_speak_sem);
 }

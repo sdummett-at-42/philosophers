@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 20:40:39 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/02 18:27:20 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:13:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	launch_processes(t_philo *philo)
 				process_routine(philo);
 			break ;
 		}
+		else if (philo->pid[i] < 0)
+			write(2, "fork has failed\n", ft_strlen("fork has failed\n"));
 		i++;
 	}
 }
