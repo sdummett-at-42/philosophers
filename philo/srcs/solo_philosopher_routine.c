@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch_threads.c                                   :+:      :+:    :+:   */
+/*   solo_philosopher_routine.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 21:56:48 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/02 18:05:50 by sdummett         ###   ########.fr       */
+/*   Created: 2022/01/02 17:57:15 by sdummett          #+#    #+#             */
+/*   Updated: 2022/01/02 18:12:11 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	launch_threads(t_datas *datas)
+void	*solo_philosopher_routine(void *arg)
 {
-	int		i;
+	t_philo	*philo;
 
-	i = 0;
-	datas->simulation_start = gettime() + 1000;
-	if (datas->philo_number == 1)
-	{
-		pthread_create(datas->philo_thread[i], NULL,
-			&solo_philosopher_routine, datas->philo[i]);
-		return ;
-	}
-	while (i < datas->philo_number)
-	{
-		pthread_create(datas->philo_thread[i], NULL,
-			&philosopher_routine, datas->philo[i]);
-		i++;
-	}
+	philo = arg;
+	while (gettime() < philo->datas->simulation_start)
+		ft_msleep(1);
+	print_timestamp(philo, FORK_TAKEN);
+	ft_msleep(philo->datas->time_to_die);
+	print_death_msg(philo, gettime());
+	return (NULL);
 }

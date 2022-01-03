@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:36:49 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/02 18:07:22 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,11 @@ int				print_timestamp(t_philo *philo, int state);
 void			destroy_mutexes(t_datas *datas);
 void			release_ressources(t_datas *datas);
 
+/* solo_philosopher_routine.c */
+void			*solo_philosopher_routine(void *arg);
+
 /* start_simulation.c */
 void			start_simulation(t_datas *datas);
-
 void			check_if_philo_died(t_philo *philo);
 void			print_death_msg(t_philo *philo, unsigned long currtime);
 
