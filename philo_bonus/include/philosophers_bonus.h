@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 12:59:54 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:56:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/02 18:31:17 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ void			release_subprocess_ressources(t_philo *philo);
 
 /* release_ressources.c */
 void			release_ressources(t_philo *philo);
+
+/* solo_philosopher_routine.c */
+void			solo_philosopher_routine(void *arg);
 
 /* start_simulation.c */
 int				start_simulation(t_philo *philo, char **args);

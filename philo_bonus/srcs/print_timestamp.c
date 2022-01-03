@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:12:47 by sdummett          #+#    #+#             */
-/*   Updated: 2021/12/29 20:50:47 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:00:28 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ bool	check_someone_died(t_philo *philo)
 		sem_unlink(philo->confirm_someone_died_name);
 		return (false);
 	}
-	sem_post(philo->someone_died_sem);
 	sem_post(philo->someone_speak_sem);
+	sem_post(philo->someone_died_sem);
 	return (true);
 }
 
@@ -48,7 +48,7 @@ int	print_timestamp(t_philo *philo, int state)
 			current_time, philo->id + 1);
 	if (state == SLEEPING)
 		printf(BLU "%-6ld %-2d is sleeping\n"RESET, current_time, philo->id + 1);
-	sem_post(philo->someone_died_sem);
 	sem_post(philo->someone_speak_sem);
+	sem_post(philo->someone_died_sem);
 	return (1);
 }
