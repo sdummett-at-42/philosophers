@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 21:01:33 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/03 15:15:21 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:20:47 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	wait_processes_end(t_philo *philo)
 			kill(*(philo->pid), SIGTERM);
 		i++;
 	}
-	// wait(NULL);
 	sem_close(philo->forks_sem);
 	sem_unlink(philo->forks_name);
 	sem_unlink(philo->someone_died_name);
