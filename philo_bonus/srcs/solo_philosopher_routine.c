@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:15 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/02 18:31:07 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:26:33 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	solo_philosopher_routine(void *arg)
 	print_timestamp(philo, FORK_TAKEN);
 	ft_msleep(philo->time_to_die);
 	print_death_msg(philo, gettime());
+	release_subprocess_ressources(philo);
 	exit(0);
 }

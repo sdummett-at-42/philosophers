@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 18:38:55 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/03 14:58:51 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:34:09 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	main(int ac, char **av)
 	memset(&philo, 0, sizeof(t_philo));
 	if (!(start_simulation(&philo, av + 1)))
 		printf("Something wrong happened\n");
+	release_ressources(&philo);
 	return (0);
 }

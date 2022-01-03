@@ -6,7 +6,7 @@
 /*   By: sdummett <sdummett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 22:33:14 by sdummett          #+#    #+#             */
-/*   Updated: 2022/01/03 13:16:38 by sdummett         ###   ########.fr       */
+/*   Updated: 2022/01/03 15:52:58 by sdummett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_if_philo_died(t_philo *philo)
 	pthread_mutex_lock(&philo->last_meal_mutex);
 	if (currtime - philo->last_meal > philo->time_to_die)
 	{
+		pthread_mutex_unlock(&philo->last_meal_mutex);
 		sem_wait(philo->someone_speak_sem);
 		sem_wait(philo->someone_died_sem);
 		philo->confirm_someone_died_sem = sem_open(
@@ -53,7 +54,6 @@ int	check_if_philo_died(t_philo *philo)
 			print_death_msg(philo, currtime);
 			sem_close(philo->confirm_someone_died_sem);
 		}
-		pthread_mutex_unlock(&philo->last_meal_mutex);
 		sem_post(philo->someone_speak_sem);
 		sem_post(philo->someone_died_sem);
 		return (1);
